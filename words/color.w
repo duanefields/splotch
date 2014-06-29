@@ -1,0 +1,15 @@
+14
+blue
+red
+white
+green
+yellow
+clear
+tangerine
+black
+purple
+pink
+brown
+tan
+grey
+olive

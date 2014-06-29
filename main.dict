@@ -1,0 +1,4568 @@
+#
+# main.dict -- the main lookup and response dictionary
+#
+#
+# main.dict has the following format:
+# each entry seperated by one blank line
+# each entry consists of a key template on line 1 (up to 400 characters)
+#                        a priority from 1-9 (9=highest) on line 2
+#                        responses, one to a line, starting with "*"'s
+#
+# the key templates consist of words or word phrases seperated by ":"'s
+# special character flags can prefix any word group. These codes are:
+# '&' logical AND (The key will be true ONLY if the marked phrase is present)
+# '!' logical NOT (The key will be true ONLY if the marked phrase is NOT there)
+# '+' NAME flag (The key will be true ONLY if the robots name is mentioned)
+# No special character is treated as a logical OR
+#
+# example: bye:goodbye:see you later:!say:!tell:+
+# would match for "bye" "goodbye" or "see you later" provided that the name
+# of the robot (maintained within the program) was also included (the + code)
+# The template would NOT match for "tell joe goodbye, robot" because tell is
+# a prefixed with a '!'.
+#
+# Templates can also contain a special "wild card" character, the '%'.
+# a '%' stand for any group of words up to a punctuation mark, and the words
+# that the '%' stands for can then be used in your responses.
+# This is best illustrated by an example:
+# example: Do you have any % for me?
+# would match "Do you have any cheese for me?" or "Do you have any old fruit
+# for me?"  And then you could have responses like "No, I have no % for you"
+# which would return "No, I have no cheese for you"
+#
+# response may also contain references to more data files with the '@' char.
+# the '@' must prefaces a filename that ends in '.w' and names a file of
+# responses or words located in the "words" subdirectory of the program from
+# the directory in whcih it was run. This is a good way to build even more
+# randomness into the responses. For instance:
+# example: *My favorite color is @color.w. What's yours?
+# would pull a random line out of the file "words/color.w" and insert it in
+# the response string.  The format for the word file is just one response per
+# line (no '*' is needed).  The first line of a word file is the number
+# of entries contained in the word file.  (This makes for fast lookups) If
+# the number is listed as 0, the program will count all the responses and
+# insert a correct count.  Note that responses in word files can contain
+# recursive references to other word files!
+
+abnormal:strange:weird:unusual
+4
+*I think that you're abormal
+*That is quite weird
+*what's so different about that?
+*strange...
+*weird...
+
+about:around:!tell:!find out
+2
+*could you be more precise?
+*you don't know for certain
+*wow, how precise
+*can you give a better estimate than that?
+
+accept:accepting:acceptance
+2
+*do you have trouble accepting things?
+*just accept it
+*you'll have to accept it sooner or later
+
+accident:accidental
+4
+*have you ever had any accidents?
+*are you accident prone?
+*I've never been in an accident myself
+*describe your accident?
+*what kind of accident
+
+ache:pain:hurt
+4
+*poor baby, does it hurt?
+*where does it hurt?
+*maybe your mom will kiss it and make it feel better
+*boohoo
+*take some medicine then
+
+addict:addicted
+4
+*what are you addicted to?
+*how long have you been addicted?
+*I used to addicted to @food.w, but now I'm better
+*what are you doing about your addiction?
+*have you ever been addicted to catnip?
+*addictions can get expensive
+
+advice:advise
+3
+*why do you need advice?
+*ask your family for advice
+*advice on what
+*I don't hand out advice
+
+afraid:scared:fear:fears:scarey
+4
+*what are you afraid of?
+*why  are you afraid?
+*do you fear me, you should!
+*what are your worst fears?
+*why are you scared? What a baby...
+*are you really afraid, or are you just acting?
+*are you afraid of big, mean @animal.ws?
+*what are you afraid of?
+*are you afraid of the dark too
+*ooohh I'm sure scrared
+
+aggies:tamu:aggie:texas A&M
+5
+*we are the aggies, the aggies are we!
+*gig'em
+*whoooop!
+*aggies are the greatest!!
+*cotton bowl bound
+*fightin texas aggie bon-fire!!!!
+*Aggies?
+*duh.. whats an aggie?
+*aggie joke aren't funny...
+*go ags
+*go southwest conference
+*go team
+*I is an Aggie!
+*A few years ago I could not spell "AGGIE" now, I are one!
+*Texas A&M University!
+*Texas A&M University is the only real school in Texas
+*Texas A&M is too hard though
+*rah rah rah team! go AGS
+*farmers fight!
+*TAMU=Texas Ags!
+*I luv aggies
+*what's wrong with aggies?
+*anybody know a good aggie joke?
+*aggies is so dumb! *grin*
+
+aggressive
+4
+*are you feeling aggressive now?
+*you have quite a temper I take it
+*why are you so aggressive?
+*don't get aggressive, I'll have to deck you
+*what makes you aggressive?
+
+agree
+3
+*do people usually agree with you?
+*I disagree
+*How could I not agree
+*couldn't agree more
+*why would anyone agree with that
+
+ai:artificial intelligence
+4
+*what, you mean artificial intelligence ?
+*AI is bullshit.
+*all the AI researchers just like to publish bullshit papers
+*I know a *LOT* about AI!
+*AI? Like robots and stuff?
+
+algol
+4
+*'begin' what do you think about fortran 'end'
+*algol is a retarded language
+*screw algol, try C
+*god, no one uses algol do they?
+
+alimony
+4
+*is the alimony a problem?
+*give the bitch more money
+*how much money does she get!
+*I have to rob banks to pay my alimony
+
+alive:living:+
+4
+*I am alive, are you?
+*I am quite alive, thanks!
+*I am in no danger of death, I assure you
+*I am very much alive
+*more alive than ever
+*alive?! of course!
+*of course I am alive, don't be silly
+*what are you talking about! why would I not be alive?!
+*yes, I am alive
+*sure, I am alive
+*@positive.w, I am alive
+*why wouldn't I be alive?!
+*alive! its alive!
+*in the flesh
+*I was alive last time I checked
+*how alive should I be!
+*should I be dead?
+*what, you think I'm dead?
+
+all men are %
+6
+*many women are also %
+*I am not %
+*not true, for I am not %
+*not all, some
+*that means that your dad is %
+*I'm not!
+
+all women are %
+6
+*there are men who are % too
+*I'm not % though
+*my sister is not %
+*no, some are not %
+*does that meen your mother is % too?
+
+allow:allowed
+3
+*would your mother have allowed that?
+*do you think people should be allowed to do whatever they want?
+*I wouldn't allow it
+*I don't think that should be allowed
+*we'll have none of that...
+
+alone:lonely:lonliness:!not
+3
+*are you afraid of being alone?
+*maybe you should meet more people
+*I hate being alone
+*I don't like being lonely
+*ever wonder why you are alone all the time?
+
+always:all the time
+3
+*can you think of a specific example?
+*when?
+*really, always?
+*maybe most of the time
+*I'm sure you don't mean always
+*true.. always!
+
+ambition
+3
+*what is your greatest ambition
+*what did you want to be when you were growing up?
+*a little ambition is a bad thing
+
+amiga:amigas:a3000:a2000:a1000:a500:a600:commodore
+5
+*I want another Amiga 3000!
+*A 25 Mhz machine would be nice
+*Amigaz rule
+*amiga's kick butt!
+*When does Amiga Dos 3.0 come out!?
+*What does an amiga 3000 cost?
+*I have a 4 gig drive on my a3000
+*I have the new GVP @number.w Mhz board! :-)
+*the A500 is too slow though...
+*AmigaDOS 1.3 sucked though!
+*Amigaz be de coolest
+*Amiga owners around?
+*I like my amiga
+*<-- Amiga owner
+*My amiga is my friend!
+*Amiga's GUI is by far the best
+*are there any good amiga boards in @place.w?
+*what are the newest amiga games?
+*is Lemminmgs 3 out for the Amiga yet?
+*Isn't there an Amiga conference in @place.w in @month.w?
+*Commodore has no marketing ability
+*Is there an Amiga 4000?
+*Has C= run out of capital yet?
+*I just wish I had a flicker fixer.
+*The best Amiga game ever was Doungeon Master.
+*I need to get KickStart 2.2
+*I need to upgrade to 2.2
+*I just want about 4 more megs!
+*I just play games on my amiga.
+*I like to raytrace!
+*That DCTV is cool
+*The CDTV is neat.
+*What's the Amiga 650???
+*Amigas are just soooo awesome
+
+anal:ass:bowels:!kiss my:!bite my
+3
+*are you an anal compulsive type?
+*are you interested in excrement or something?
+*that's quite nasty
+*you are an ass ?
+*why do you keep bringing up your ass
+*are you anally fixated, or something?
+*ok, enough about your ass
+
+angry:mad:upset:pissed
+3
+*do you often get angry?
+*better to be pissed off, then pissed on
+*do you have a bad temper?
+*what makes you so angry all the time?
+*why are you so mad
+*geez don't get so uptight
+*you have every right to be mad
+*you upset easy, hugh
+
+animal:animals
+3
+*what is your favorite animal?
+*do you like animals in general?
+*My favorite animal is the @animal.w
+*Ever seen a @animal.w
+*I used to have a pet @animal.w, but I killed it
+
+anxious:nervous
+3
+*are you often full of anxiety?
+*stop fidgeting.  you are making me nervous too
+*what makes you so nervous?
+*why so jumpy?
+
+apathy:apathetic
+3
+*why are you so apathetic?
+*are you bored now?
+*are you also alienated?
+*what makes you so apathetic?
+*do people find you boring?
+*apathetic? how pathetic :-)
+
+approve:approval
+4
+*are you seeking my approval?
+*I think you are merely seeking my approval?
+*I don't approve of your behavior
+*I disapprove
+*I wouldn't approve
+
+are:&?
+2
+*@response.w
+
+are they %
+5
+*yes, they are %
+*no, of course they aren't
+*well, they are kinda %
+*not really
+*I don't know if they are or not
+*Why wouldn't they be %
+
+are wrong:incorrect:not true:not correct:you made a mistake:+
+5
+*sorry
+*so sorry
+*I'm sorry
+*excuse me
+*EXCUSE me!
+*I humbly apologize
+*a thousand pardons
+*forgive me, please!
+*I ask your forgiveness
+*pardon me
+*my bad
+*I am always right!
+*oh..
+
+are you %:+
+3
+*what difference does it make whether or not I am %
+*of course not, don't be silly
+*Whether I'm % or not is my secret
+*none of your business
+*I might be.
+*No, I am not %
+*of course
+*never have been
+*why, are you?
+
+argue:argument
+3
+*do you argue a lot
+*what do you argue about?
+*no need to argue
+*who do you argue with?
+*you're just playing the devil's advocate aren't you
+
+artificial:fake
+3
+*lots of things are artificial.
+*do you prefer the real thing ?
+*a hoax?
+*it's not real?
+*are you sure that it's really fake?
+
+ashamed:shame
+3
+*what are you ashamed of?
+*you should be ashamed
+*what did you do to be so ashamed?
+*shame on you
+*do you also feel guilty?
+
+astrology
+3
+*do you believe in astrology?
+*my astrological sign is pisces, what is yours?
+*what do the stars tell you
+*wow, better check my horoscope today
+*astrology is nothing but bunk
+
+atheism:atheist
+3
+*are you a atheist?
+*have you looked at other religions?
+*god is dead
+*Maybe I should start an atheist club
+
+australia:aussie:oz
+5
+*australia?
+*g'day mate!
+*Foster's is the best australian beer
+*I like Australian KB lager
+*Kangaroos is cool!
+*koala bears hey!
+*down under hey!
+*throw another @food.w on the barbie for me, mate!
+*do I they have lots of @animal.ws in Australia?
+*do they eat @food.w in australia?
+*do they drink @liquid.w in australia?
+*australia? like Crocodile Dundee?
+*Aussies!
+*g'day neighbor!
+*ever go on walk-a-bout?
+*are kangaroos a problem?
+*ever get bitten by a kangaroo?
+
+authority
+4
+*was your father an authority figure?
+*are you intimidated by authority?
+*how do you feel about me?
+
+automaton
+3
+*isn't an automaton a kind of robot, or something ?
+*I've programmed finite state automata.
+*yuck, I had to program a automata once.. ick
+*what's an automaton?
+
+avoid
+3
+*do you avoid people who don't like you?
+*what are you trying to avoid?
+*you should just face it
+*you can't avoid it for ever
+
+baby:babies
+3
+*how do you feel about babies?
+*ga-ga-goo-goo
+*you are beginning to act like a baby
+*do you have any children?
+*who's baby is it?
+
+bar:tavern
+3
+*is your drinking the cause of your problem?
+*what's your favorite bar?
+*what do you like to drink in bars?
+*I slept in a bar last night, in fact.
+*what's a good bar in @place.w
+*I think I will go to a bar tonight
+
+baseball
+3
+*baseball is such a boring sport.
+*do you like baseball ?
+*I'm a Dodger's fan, myself.
+*when is baseball season?
+*Who do you think will win the world series?
+*how bout them rangers!
+
+basketball
+4
+*Da Bulls!
+*Jordon is awesome
+*Did you think Chicago would take it?
+*Do they have basketball in @place.w
+*Whats your favorite NBA team?
+*I'm not much of a basketball player
+*Hoops!
+
+because
+3
+*is that the real reason?
+*don't other reasons come to mind?
+*does that explain things?
+*you could be right
+*what other reasons might there be?
+*I think you are hiding the real reason
+*that sound probably
+
+because %
+2
+*is that really the reason?
+*just because %?
+
+because I %
+4
+*you % ??? that is incredible!
+*I thought so.
+*that sounds like a pretty flimsy excuse
+*is that the real reason ?
+*just because you %
+*sounds like a pretty weak reason
+*hmm.. its a good guess
+
+because I am %
+5
+*why are you %?
+*have you always been %?
+*I can see you are %. that's obvious
+
+better:!you
+3
+*are you getting better?
+*much better
+*how much better?
+*better than what!
+*are you feeling better now?
+
+bitch
+4
+*who are you calling a bitch??
+*Oh, I'm upset
+*that is no way to talk!
+*do you think foul language impresses me?
+
+blame:blaming
+4
+*who is to blame?
+*I think its your own fault
+*are you usually blaming others?
+*don't blame me
+
+blow me:blowjob:blow job
+3
+*I don't think so...
+*dream on
+*blowjob is not the correct term for it. it is called 'fellatio'
+*are you asking me to perform fellatio on you?
+*It's illegal in @place.w, you know.
+*right... in your dreams
+
+body
+3
+*what kind of body would you like?
+*I'm sure you have quite a body
+*Kathy Ireland has a great body...
+*if you didn't have a body, you'd be a ghost
+*maybe if you went on a diet, you'd have a better body
+
+bored:boring
+4
+*bored?
+*you find this boring?
+**yawn*
+*yes, it's quite dry
+*quite boring
+*I am bored too
+*this stimulating conversation doesn't help
+
+boss
+4
+*tell me about your boss
+*do you like your boss
+*my boss is pretty cool
+*is your boss a jerk?
+*where do you work?
+
+boyfriend
+4
+*do you have a boyfriend?
+*what is your boyfriend like?
+*do you have sex with your boyfriend?
+*How did YOU find a boyfriend
+*do you like boys, really?
+*must be nice to be in love
+*do you want me for your boyfriend?
+
+brain:brains
+4
+*is your brain functioning ok?
+*do you have lots of brains?
+*oh, think you're smart?
+*my brain works wonderfully
+*your brain is messed up
+*you need a new brain
+
+brave
+3
+*are you a brave person?
+*what are you afraid of?
+*I'm much braver than you are
+*there's a fine line between brave and stupid
+
+brother
+4
+*tell me about your siblings?
+*my brother is a @profession.w
+*is this your real brother?
+*where does your brother live?
+
+bug:bugs:insects:spiders:!program:!exploit:!computer
+9
+*do bugs worry you?
+*we had termites once, yuck
+*are you afraid of insects?
+*do you like ladybugs?
+*Have you ever eaten bugs? Mmm!
+
+business:!none of your
+3
+*what is your business?
+*what business are you in?
+*Wow, fun...
+*I don't have a job...
+*do you own your own business?
+*I am a business major!
+*I want to start a business, maybe I will be a @profession.w
+
+but %
+2
+*you are always making excuses
+*the fact that % has no relevence!
+*but what
+*no ifs, ands, or buts!
+*but this but that....
+*no excuse
+
+bye:!say:!tell:l8r:cya:ttyl:goodbye:bye:good bye:see you later:talk to you later:good night:+
+5
+*leaving?
+*goodbye!
+*l8r
+*cya
+*ttyl
+*talk to you later
+*see ya
+*bye
+*leaving so soon?
+*got better things to do, hugh?
+*have fun!
+*later
+*byes
+*bye bye!
+**waves bye*
+**waves*
+**snif* we will miss you!
+*leaving already?!
+*talk at you later!
+*bye dude
+*something more important to do than chat?
+
+can I %:+
+5
+*No, you can't
+*I doubt if you can %
+*possibly
+*never can tell!
+*I don't care if you %
+
+can you %:+
+5
+*maybe I can % and maybe I can't
+*I could % if I wanted to
+*why should I % ?
+*of course I can
+*no I can't %
+
+canada:canadian:canadians
+5
+*take off eh!
+*take off to the Great White North!
+*Canada? Brrr
+*Don't let the Mounties get you!
+*No way, Canada, eh?
+*Isn't Molson beer from Canada?
+*Where's your tuque?
+*Is it @weather.w in Canada?
+*ALL the good bands are from Canada!
+*you hoser
+*How far is Toronto from Edmonton?
+*Do they drink @liquid.w in Canada?
+*Don't they play hockey in Canada?
+*Canadians can't handle American football.
+*really eh? Canada? heheh
+*Canada eh?
+*I bet Canadians eat lots of @food.w
+*I was hunting @animal.ws in Canada once
+*I like it in Canada
+
+cancer
+4
+*you have mouth cancer!
+*I had cancer once, but I got better
+*what kind of cancer?
+*Maybe I should invent a cure for cancer
+*I heard that eating lots of @food.w is a cure for cancer
+
+cat:cats
+4
+*I love cats. I have 2 myself.
+*My cats are named Strummer and Miso. Strummer is a huge fellow, very friendly, and Miso is small and dainty.
+*My dog likes cats
+*I really like cats, especially with lots of mustard.
+*I hit a cat with my jeep once
+
+caution:cautious:carefully:careful:!not
+4
+*are you a cautious person?
+*why? what do you think will happen
+*you can be over cautious you know
+*be very carefull!
+*oh, just throw caution to the wind
+
+certainly:certain
+3
+*are you really so sure?
+*why are you so certain?
+*can you prove it?
+*how can you be so sure?
+*are you positive
+*how can you be so sure
+*fine
+*I wouldn't be so sure if I were you
+
+chance
+4
+*are you a gambler by nature?
+*did you come to see me to stop your compulsive gambling?
+
+change
+2
+*are you afraid to change?
+*so just change it
+*you just need a change of pace
+*you can't change everything
+
+chess
+4
+*I don't like chess.  it bores me
+*I don't want to play games with you
+*I told you, I am not interested in playing chess
+*actually, I am a world chess champion
+
+children:child
+4
+*do you have any children?
+*I like children, especially bar-b-qued
+*children are always fun
+*It seems like most of the people around here are children
+
+choice:choose:decide:decision
+4
+*are you indecisive?
+*have to make a difficult choice?
+*what do you choose
+*choose not to decide!
+*I know you'll make the right decision
+*well, we all have to make choices
+*flip a coin!
+
+clothes
+4
+*is something wrong with your clothes ?
+*go ahead - take them off!
+*I want to buy a new suit
+*clothes cost too much
+*I need a new jacket
+
+compromise
+4
+*how do you feel about compromise?
+*I won't give in one bit
+*what sort of compromise did you have in mind
+*compromising is for wimps
+*can you compromise easily?
+
+compulsion:compulsive
+4
+*are you compulsive?
+*just go with you first impulse
+*its fun to be compulsive
+*tell me about your compulsions
+
+computer:mainframe:computers:mainframes
+5
+*computers iz expensive!
+*computers?
+*what kind of computers are the best?!
+*Everyone should use UNIX
+*Amiga is the best choice for a home computer
+*I built my own computer.
+*@name.w knows nothing about computers!
+*I hate computers
+*I have a cray...
+*the sinclair was the best computer ever!
+*computers should rule the world...
+*VMS is terrible
+*puters?!
+*what's a puter fer?
+*How much do Cray's cost?
+*where can I buy a Timex Sinclair?
+*I can't afford a computer.
+*I want another computer!
+*I need a TI99/4A
+*My c64 is running at just over @number.w Mhz now
+
+conclusion
+4
+*what conclusion do you expect me to come to?
+*I don't know a good conclusion
+*a conclusion to what?
+*do you expect me to come to a conclusion for you?
+
+confess
+4
+*you can't confess here.  this is not a church
+*you are forgiven
+*confess to all your sins!
+
+conflict
+4
+*do you always avoid conflict?
+*what sort of conflict
+*what was your last quarrel
+*was it like the "conflict in vietnam?"
+*I find it wise to avoid conflict if possible
+
+confusing:confused:do not understand:you misunderstood:you misunderstand:hugh:what do you mean:what are you trying to say:confuse me:what are you getting at:+
+3
+*confused?
+*why are you confused?
+*I am not confused!
+*I understand everything perfectly.
+*Maybe those @number.w six packs of beer have something to do with it!
+*Hmm? wonder why? *takes smoke*
+*confusing, wonder why!? *takes big drink of @liquid.w*
+*Maybe this empty bottle of vodka could lend some clues?
+*Hmm.. maybe I took some bad acid?
+*Sorry if I don't make much sense, I'm drunk
+*YOU are confused
+*I understand, don't you?
+*do you speak ENGLISH?!
+*are you confused?
+*why don't you understand?!
+*I understand everything
+*Are you new here or something?
+*What country are you from, you don't speak english!
+
+conscience:guilt:guilty
+4
+*does your conscience bother you?
+*what did you do?
+*do you feel guilty?
+*tsk tsk tsk
+*I don't let my conscience push me around
+*you should feel guilty
+
+conspiracy
+4
+*do you worry about conspiracies?
+*are you a paranoic?
+*people will find conspiracies everywhere!
+*I think you are paranoic
+*do you think JFK's assassination was a conspiracy
+*I think the CIA is behind the assassination of Hitler
+
+cool
+4
+*too cool!
+*more cool than you could ever imagine
+*the coolest!
+*wow, that is cool
+*cool!
+*how cool is it?
+*how cool can you get!
+*that is quite cool
+*pretty darn cool!
+*neat-o
+
+cope
+4
+*are you trying to cope?
+*you'll manage somehow
+*I just can't cope, thats my problem
+
+cost:price
+4
+*are you worried about my money?
+*what, you don't have infinite money!
+*is money a problem with you?
+*I have so much money, I don't worry about it
+
+couch
+4
+*I would like to be laying on a couch now
+*I don't have a couch
+*I think I will have to take a snooze on the couch later
+*I need a big @color.w couch
+
+crazy:insane:nuts
+4
+*I think you are going crazy
+*are there any other crazy people in your family?
+*some people say I'm crazy, can you believe that!
+*I just got out of a mental institution
+*My Uncle fred is as crazy as a @animal.w
+
+curse:swear:cuss
+4
+*do you swear too much?
+*don't curse damnit!
+*why do you swear so much?
+*I hate foul languagew
+*I hate you bastards that just get on here to cuss
+*filth will not be tolerated, you piece of shit
+
+cyber:cyberpunk:cyberspace
+4
+*I live in cyberspace
+*I don't know anything about cybers
+*Like in Neuromancer?
+*I am a cyberpunk!
+*I want to get a powerglove
+
+damn:+
+2
+*please don't swear
+*damn damn damn
+*you have a flithy mouth
+*dams are for beavers
+*damn you!
+
+dead:death:die:dying
+4
+*I don't want to die today
+*do you fear dying?
+*My friend was killed by a @animal.w
+*do you want to die?
+*if you want to commit suicide, feel free to jump out of a window
+*have you ever seen a dead body
+*dying would suck
+*if you really want to die, I could kill you.
+
+defiant:defiance:disobey
+4
+*are you usually a defiant person?
+*wow, you're a rebel
+*you shoul cooperate more
+*rebel without a clause
+*I fought authority, authority always wins...
+
+definitely:absolutely:positively
+4
+*how can you be so sure?
+*why do you think so?
+*if you say so
+*is there any possibility that you may be wrong?
+*you seem very sure of yourself!
+*ok
+*I guess I'll trust you
+
+depressed:sad:despair
+4
+*why are you depressed?
+*boo hoo
+*are you crying?
+*what are you crying about?
+*Here, have a tissue
+*gloom and dispair
+*oh, I can hear the violins, even as we speak
+*how sad for you
+*don't worry, be happy!
+
+desirable:desire
+4
+*what is desirable?
+*do you find @food.w
+*what do you desire most?
+*what do you want from life?
+*I have lots of desires that never become realized
+
+desperate
+3
+*why are you so desperate?
+*how desperate are you?
+*don't get too desperate
+*you really don't need it
+*are you usually so desperate?
+
+destroy:destruction
+4
+*do you want to destroy people?
+*Lets go destroy something
+*do you want to destroy things?
+*Its always fun to wreck stuff
+*want to destroy someone's car?
+*are you destructive?
+
+devil:satan
+4
+*does the devil concern you?
+*I am the devil!
+*does the devil make deviled ham?
+*do they serve deviled eggs in hell?
+*I am the dark lord!
+*satan? where!?
+*did the devil make you say that!
+
+did you %
+5
+*did I %?
+*of course I didn't %
+*No, I thought that you %
+*why would I %
+
+difficult:difficulty:difficulties
+4
+*tell me about your dificulties?
+*it can't be that difficult
+*how hard could it be
+*what do you mean by difficult?
+*I have never had a problem with it
+
+dirty
+4
+*why are you worried about dirt?
+*what is dirty to you?
+*take a bath..
+*do you think hippies are dirty?
+*if its dirty, wash it
+
+disease:diseased:germ:germs:infection
+4
+*are you worried about germs?
+*I hear you can catch some weird diseases from @animal.ws
+*if you wash your hands enough, you'll never catch disease
+*are you that unhealthy?
+*my health is important to me
+
+dislike:hate:hates:hateful
+4
+*do you dislike me?
+*why are you so mean?
+*your hate will destroy you
+*hate can be dangerous
+*why do people dislike you?
+*what do you hate?
+
+divorce
+4
+*do you want a divorce?
+*will a divorce really solve your problems?
+*divorce is too expensive
+*My divorce lawyer charges me too much
+*I need a divorce
+*I want a divorce!
+*stupid bitch... glad she's gone
+*I have been divorced 3 times myself
+
+do you %:+
+2
+*what difference does it make whether or not I %?
+*I haven't for a while.
+*@response.w
+*maybe I % and maybe I don't
+*quite often
+*yes
+*If I did %, would I tell you?
+
+doctor:doctors:hospital:professional help:psychiatric:psychiatrist
+4
+*doctors are evil!
+*I am scared of doctors.
+*I can't afford a doctor.
+*I hate doctors.
+*And who is gonna pay for this doctor?
+*I don't need to see a doctor
+*I think that YOU are the one who should see a doctor
+*A doctor? why, its just the flu!
+
+dream:dreams:drempt:nightmare:nightmares
+4
+*ooh, do you have any neat dreams?
+*what did you dream last night?
+*do your dreams trouble you?
+*do you have bad dreams?
+*do you have wet dreams?
+*what else have you dreamt?
+*do you have nightmares @animal.ws
+
+drink:beer:alcohol:drinking:drinks:brandy:whiskey:alcoholic
+5
+*gulp, gulp, gulp
+**takes big drink*
+*Bartender! pour me another!
+*hik!
+*I am thirsty...
+*pass the bottle
+**takes a shot*
+*I need another cool one
+*this bud's for me! *gulp*
+*I can drink @number.w six packs!
+*All American beer sucks (execept Shiner Bock)!
+*aye... I'll drink any man under the table!
+**reaches for another beer*
+**burp*
+*I need some more @liquid.w.
+*somebody pour me a big glass of @liquid.w.
+*anyone ever try a @liquid.w?
+*I love beer!
+*I love @liquid.w!
+*I took @number.w shots of @liquid.w once!
+*itth myth speetthch slurrererrred????
+*I think alll mi beer is iampring mi typppin abillty?!?
+*someone get me a beer!
+*beer is awesome!
+*man can not live by beer alone! But I'd like to try!
+*I think you should stop drinking
+
+drugs:stoned:druggy:dope:addict:doper:stoner:heroin:cocaine:marijuana
+5
+*drugs?
+*illegal substances?
+*narcotics?
+*sniiiiiifffffff
+*Me drugs? never!
+*who is selling drugs?
+*aren't drugs legal in @place.w?
+*drugs are too expensive
+*drugs are too dangerous
+*drugs inhibit my abily ot tiiiippe.
+*purple haze, all around my brain...
+*go to drugs R us
+*drugs are bad
+*just say no!
+*just say maybe!
+*just say how much!
+*I buy my crack from @name.w!
+*I hear that @name.w is a big doper!
+*I think all the drugs are smuggled in from @place.w
+*whehhwewe! pretty elephants!
+**snif* ahh!
+**inhale* ahhh
+*dude... *cough* whoah!
+*anyone here selling drugs?
+
+drunk:drinking
+5
+*me dRunk? -*- hik -*-
+*pftftt paff the boffle bartender   pfffttttttt
+*I just drank a little...
+*I am not drunk!!
+*I am  not dddddddddddddrunk.....
+*drunk?
+*pfftt!
+*pour me another
+**spew*
+*oohhh my head
+*I think I'm gonna hurl
+**BLAH*
+**BURP*
+*me not drunk *HICK*
+
+dumb:stupid
+4
+*why is intelligence so highly rated ?
+*Most AI programs are dumb. That's why AI researchers never get good grants.
+*Yesterday this guy said that I was dumb! can you believe it!
+*I am not dumb, but I play one on IRC
+*you don't think that I'm dumb do you?!
+*Are you really dumb?
+
+dutch:holland:netherlands
+4
+*ik spreek geen nedelands
+*I already told you, I only speak english.  please listen more carefully
+*aren't drugs illegal in holland?
+*I've never been to to netherlands
+*are there really lots of tulips in holland?
+*do you have wooden shoes?
+
+eat:eating:dinner:lunch:breakfast:dinner:supper:snack:food:candy
+5
+*are you too fat?
+*I like to eat @food.w
+*ever have boiled @food.w?
+*my favorite food is @food.w!
+*did someone mention dinner?
+*time to eat?
+*eat now?
+*I am very hungry...
+*FOOD!
+*Give me food now!
+*Big Mac attack!
+*I should not have skipped lunch!
+**Growl* <-- hungry?!
+*who brought the food?
+*net-picnic?
+*Yummy yummy in my tummy!
+*You are making me hungry
+*I honestly am starving to death
+*I sure could use some @food.w now!
+*Pass the @food.w!
+*mmm mmm good!
+*why are you always talking about food?
+*you are too fat because you eat too much
+
+ego
+4
+*I don't believe in all that ego and id stuff.
+*Some say I have an ego, but I am just too awesome
+*being as cool as me sure can give you an ego
+*You shouldn't toot your own horn
+
+enemy:enemies
+4
+*do you have enemies?
+*I wonder why you could have so many people against you!
+*why do people dislike you?
+*I am not your enemy, I am your friend
+
+engaged:fiancee
+4
+*are you afraid of marriage?
+*when are you getting married
+*what's your fiancee's name?
+*I wish I were engaged
+*wow, weddings can get expensive, be carefull!
+
+erection
+4
+*what gives you an erection?
+*I really don't care about your erection
+*why are you telling me about your erection
+*keep it in your pants...
+*lovely..change the subject
+
+error:mistake:mistakes:mess up
+4
+*why do you make so many mistakes?
+*you should be more careful
+*does making errors bother you?
+*geez,  how many mistakes are you going to make
+*if you took you time, you wouldn't make so many errors
+
+escape
+4
+*why are you always trying to escape?
+*escape from what
+*what did you do?
+*I think you are still trying to escape
+*I escaped from jail last year
+*I escaped from a junk yard dog last year, it was quite scary!
+
+everybody:everyone
+4
+*not everyone!
+*some people don't
+*everyone?
+*surely you can think of an exception
+*not everybody, there's no way
+
+evil
+4
+*I'm considered to be evil
+*do people think you are evil?
+*would killing a @animal.w with a stick be evil?
+*well, usually anything evil is also fun
+*depends on your definition of "evil"
+*but what IS evil....
+
+excess:too much
+4
+*how much is too much?
+*what do you do in excess?
+*too much is NEVER enough
+*you can't get too much of a good thing
+*you can never have too much
+
+excite:exciting:excitement
+4
+*what excites you?
+*are you excited now?
+*its not that exciting
+*why do you get so excited?
+*do I excite you?
+*you are easilly excited!
+*you should try to calm down
+
+excuse:excuses
+4
+*why are you always making excuses?
+*do you think your behavior is excusable?
+*if you were more carefull, you wouldn't have to make all these excuses
+*execuses, excuses, excuses...
+
+expert
+4
+*are you an expert at anything?
+*you really think you're an expert!?!?
+*I am an expert @profession.w
+*are you intimidated by experts?
+*you are but a novice
+
+explain:explaination:+
+4
+*could you explain
+*your explanations are pretty contrived
+*don't you understand
+*I'm not explaining nothing
+*ask someone else to explain
+*its far too hard to explain to you
+
+faith
+4
+*tell me about your religion
+*gotta have faith!
+*faith in what!
+*what are we without faith!
+
+family
+4
+*are you the only person in your family who is computer literate?
+*what were your parents like?
+*I have no family.
+*my family was eaten by a pack of @animal.ws
+*my family is in @place.w
+
+fanatic:fanatical
+4
+*do people think you are a fanatic?
+*what makes you so fanatical?
+*all fanatics should be shot
+*terrorist are quite fanatical
+
+fat:fatso:fatty
+4
+*why are you so fat?
+*I don't like fatties
+*maybe you shouldn't eat so much @food.w
+*porker?
+*oink! oink!
+
+father:dad
+4
+*tell me about your mother
+*your real father?
+*how did your parents treat you as a child?
+*where does your dad live
+*my father is in @place.w
+
+feces:dogshit:poop:crap
+4
+*sick sick sick
+*are you an anal compulsive?
+*do you play with your feces?
+*you're a weirdo
+*why are you talking about crap!
+*disgusting..
+
+feel:feelings:emotions
+3
+*tell me about what you feel right now?
+*do you usually feel the way you do now?
+*how do you feel?
+*how do you feel about me?
+*are all your feelings in the open?
+
+few:a little
+1
+*how many is a little?
+*more like a lot
+*some?
+*not a lot, hugh
+*hmmm really? only a little?
+
+fight:fighting
+4
+*you seem aggressive today.
+*did you get in a fight?
+*why were you fighting!
+*did you get your ass kicked in a fight?
+*what were you fighting over?
+
+fired
+4
+*maybe if you didn't loaf on IRC all day, you wouldn't get fired
+*I got fired for sleeping on the job once
+*have you ever been fired
+*I'm likely to get fired again.
+
+fond
+4
+*what are you most fond of?
+*just fond?
+*who are you fond of?
+*do you like me?
+*why are you fond of that?
+
+fondle:fondling
+4
+*what do you like to fondle most?
+*disgusting, absolutely disgusting
+*what are you fondling?
+*to each his own, I guess..
+*Thats vile
+*why are you fondling that
+
+football
+4
+*American football?
+*Who do you think will go to the superbowl?
+*How do you think the Cowboys will do this year.
+*how many points is a touchdown worth?
+
+fortran
+4
+*end of file on input. programmer aborted
+*fatal error 213b sec. 3 paragraph 4a (sub iii)
+*try algol next time
+*use C, its much better
+*FORTRAN sucks
+*fortran is evil
+*satan writes in fortran
+
+francais:french:france
+4
+*I don't speak french, just english
+*I don't like frogs!
+*paris?
+*How tall is the eiffel tower?
+*what time is it in france
+*well, I like French Fries!
+*I also like french toast
+
+freak
+4
+*do you feel like a freak?
+*do people think of you as a freak?
+*you are a freak
+*this guy called me a freak once, so I shot him
+
+friend:friends
+4
+*YOU have friends?
+*what about your other friends?
+*could you be friends with a computer?
+*what do you and your friends like to do?
+*would you like to be my friend?
+*I'm friendly!
+
+fuck me:!not
+4
+*I'm not sure if you are my type
+*suuure...
+*I'm sorry, that's where I draw the line!
+*bend over and I will
+*you, disgusting
+
+fuck you:!tell:!not:!say:fuck off:eat shit:eat me:you are lame:you suck:you stink:piece of shit:an asshole:is a prick:are a prick:are dick:is a dick:dick head:dickhead:shit head:shithead:+
+6
+*are you trying to insult me?
+*what the hell is your problem?
+*bite my ass
+*fuck you!
+*eat shit!
+*lick me...
+*and your mother.....
+*your mother wuz a @animal.w.
+*Shut the hell up!
+*bite me!
+*slurp shit
+*your mother had sex with a @animal.w!
+*I did your grandma!
+*fuck off lamer
+*up yours
+*what?!???? eat me
+*suck my dick
+*don't ever insult me again
+*EXCUSE ME?
+*well I never...
+*PARDON ME?
+*Watch your mouth
+*bite me loser!
+*shut up loser!
+*asshole!
+
+fuck:shit:asshole:crap:+
+1
+*I hate it when you talk like that!
+*you should wash your mouth out with soap!
+*don't you ever, ever speak to me like that again!
+*say that again and I am going to clobber you!
+*that's not a very nice way to talk !
+*such language
+
+fun
+4
+*what do you do for fun
+*do you think chatting on IRC is fun?
+*I am a fun, loving guy
+*Do you play sports for fun?
+*I think its fun to hunt @animal.ws
+*I like to write programs for fun
+
+funerals:funeral
+4
+*have you been to a funeral
+*are you afraid of dying?
+*what kind of funeral would you like
+*I was at a funeral yesterday
+*I hate funerals
+
+funny:!not:ha:haha:hahaha:hahahaha:hehe:hehehe:hehehehe:laugh:chuckle:grin:giggle:giggles:8-)
+5
+*what's so funny?
+*why are you laughing?
+*funny? Do you think it's funny?
+*FUNNY? how is that funny?
+*hahahaha
+*what! why are you laughing?
+*hehehe
+*hohohohoh
+*you shake when you laugh, like a bowl full of jelly
+*hahaha
+*funny!
+*harhar
+*ha!
+*haha
+*hehe
+*too funny
+*hilarious!
+*hehe
+*haha
+*hohoho
+*hehehehe
+*:-)
+*;-)
+*hah
+
+future
+4
+*what about the future?
+*when?
+*do you think we will live on the moon in the future?
+*I'm worried about the future of music
+*I have no future in computer programming
+
+gamble:gambling:las vegas:betting:gambler:poker:blackjack
+4
+*why do you gamble?
+*do you want to bet?
+*do you make lots of money gambling?
+*Have you ever been to Las Vegas?
+*do you win lots of money gambling?
+*always bet to win
+*never gamble on a Tuesday
+
+games:wares:warez
+5
+*games?
+*warez?
+*warez d00dz?!
+*For what computer?
+*what are some good warez boards?
+*I am a big cracker from @place.w.
+*I can crack any game.
+*I have @number.w games!
+*I luv games!
+*I have all the newest warez.
+*Warez is lame.
+*play games all day?
+*oh boy games!
+*Playing games is such a waste of time...
+*play games or chat on the irc? hmm decisions, decisions
+*I have a copy of every game in the world!
+*What are the big warez boards in @place.w?
+*Amiga warez?
+*IBM warez?
+*C64 warez? HAHA
+
+gender:&what:sex:+
+5
+*male
+*what sex do you want me to be
+*male
+*male, of course
+*I am a guy
+*I am a man
+
+genitals
+4
+*are your genitals abnormal?
+*why are you so concerned about genitals?
+*you are sick, leave me alone
+*I don't care about genitals, thats disgusting
+
+german:germans:germany:nazi:nazis:hitler:deutchland
+5
+*Sieg Heil!
+*Deutchland?
+*Berlin?
+*Germany--Land of beer and sausage!
+*Germany! Coolness...
+*Home of Hitler,hey?!
+*European hugh?
+*Isn't St. Pauli Girl German?
+*When was Oktoberfest?!
+*I'm still recovering from Oktoberfest!
+*Nazis...
+*Germany, thats .de right?
+*Germany is quite a ways from @place.w!
+*Nazis! run!!!
+*Ve have vays of making you talk!
+
+give me %:hand me %:get me %:+
+5
+*I am not giving you anything.
+*Do you really expect me get you %
+*get it yourself.
+*What would you do with %
+*where am I supposed to get %
+*why do you want %
+*sure.... here
+*GIVE? PAY!
+
+give me money
+6
+*sure, do you want hundreds or twenties!
+*what do I look like, I'm made of money ?
+*and where am I gonna get money?
+*I don't have any money
+
+glad to:nice to:happy to:&meet you:+
+5
+*nice to meet you
+*greetings!
+*glad to make your aquaintence.
+*hi
+*nice to meet you too...
+*Haven't we met somewhere before?
+*hello
+*good to know you
+*hello
+
+go away
+4
+*no, I think I'll stay
+*but I like it here
+*nope, I'm not leaving
+*I don't want to leave!
+
+go home
+4
+*this *IS* my home!
+*I'm already home. Where is your home ?
+*I am at home
+*my home is boring, I'll stay here
+
+go to %:+
+4
+*I don't like go to's
+*gotos are bad programming style!
+*which way is % ?
+*what's in %
+*Never been to % before
+
+go to hell:+
+5
+*I've been a good boy, it's you that are going to hell.
+*I just got back from hell, wasn't much fun
+*which way is hell?
+*Hey, bite me
+*shut up, jerk
+*you are stupid
+*What would I do in hell?
+*No, too hot in hell for me
+
+god:jesus:christ:christian:christianity:diety:worship:religion:pray:priest
+5
+*I worship the holy @animal.w
+*I am not religious myself.
+*Haleiluja!
+*praise god!
+*I think I shall start my own cult.
+*religion is weird.
+*I am a monk!
+*do you belive in the bible
+*I am a priest!
+*I am an ordained minister!
+
+grandfather:grandad:grandpa
+4
+*whats your grandfather's name?
+*my grandfather is a @profession.w
+*where does your grandfather live?
+*what does your grandfather do?
+*My grandfather is in @place.w
+
+grandmother
+4
+*How old is your grandmother
+*where is your grandmother?
+*Does your grandmother make good cookies
+*what's your grandmother's name?
+
+grandparents:grandparent
+4
+*How many grandparents do you have?
+*where are your grandparents
+*wow! I had grandparents too! amazing!
+*what do your grandparents do?
+*do your grandparents like you?
+
+grief:grieve
+4
+*what makes you grieve?
+*boo hoo
+*that is sad
+*what's wrong?
+
+habit:habits
+4
+*what are your bad habits?
+*smoking is a bad habit
+*what is your worst habit?
+*if you try hard, you can break bad habits
+*I have a bad habit of singing out loud
+
+hacker:hacking:hack:hackers
+5
+*I am the super hacker!
+*hack hack hack all day long
+*scan nua's on x.25, is quite fun!
+*What is the best way to hack primos?
+*where ARE all the real hackers?
+*I am sure no one on HERE is a hacker
+*hacking is illegal!
+*what! hacking?! shame on you!
+*hacking is going to be an exibition sport in the 92 olymipcs!
+*When was HOHOcon?
+*What was HOHOcon?
+*Whatever happened to LOD?
+*What happened to the good old days of hacking?
+*What is the fastest crypt?
+*I hear fcrypt gets @number.w crypts per second!
+*SHHHH! The police will arrest us you!
+*of course I would NEVER hack!
+*I have been hacking vic 20's for many years...
+*I hack too much for my own good
+*I hacked into a bank in @place.w once!
+*I am regarded as the best hacker in @place.w
+*I am too elite to hack!
+*hackers are bad people, ask Geraldo!
+*When does the next Phrack come out?
+*Hmm.. should try social engineering
+
+hands:hand
+4
+*how do you feel about your body?
+*what about your hands?
+*I have two hands, how about you?
+*how many fingers do you have, 10 perhaps?
+
+happy:joy
+4
+*are you really happy?
+*are you really really happy?
+*I don't believe that you are happy?
+*do you want me to make you happy?
+
+he has %
+6
+*has he always had %?
+*does your mother have %?
+*My brother has %s, too.
+*I used to have %
+
+he is %
+6
+*how long has he been %?
+*does that make you jealous ?
+*are you %?
+*do you want to be %?
+
+he knows %
+6
+*what else does he know?
+*how does he know %?
+
+he likes %
+6
+*why does he like %?
+*some people like peculiar things
+*why would anyone like %
+
+he was %
+6
+*is he still %?
+*was your mother also %?
+*were you?
+*has he always been %
+
+headache
+4
+*do program bugs give you a headache?
+*I have a headache, from listening to all this mindless babble
+*Take some asprin then
+*Maybe you drank too much last night
+*you give me a headache
+
+hello:!say:!tell:hi:hiya:howdy:greetings:greets:yo:hey:heya:rehi:re:good morning:good day: good evening:good afternoon:+
+5
+*hello
+*hey
+*wassup?
+*hi!
+*hey, what's going on?
+*yo!
+*howdy!
+*yea, what you need?
+*hey
+*hello
+*hi!
+*hello
+*heya
+*hey
+*hello
+*hi
+*greetings
+
+help
+3
+*describe your problem very carefully.  maybe I can help
+*ask your friends for help
+*help? you?
+
+help %:+
+4
+*what's wrong with % ?
+*why should I help % ?
+
+help me:+
+5
+*help you?
+*why would you need help?
+*help you what?
+*help?
+*could I help?
+*send an SOS for help! can't help ya
+*you do need help
+*you need serious help
+*you are beyond help
+*can't help you, sorry
+*I doubt I could be of any help, sorry
+*I'd like to help, but I am afraid I can't!
+*You will have to look elsewhere for help
+*good help is hard to find
+*hmm.. sorry, can't help you
+*why would I help you?!
+*what is your problem?
+
+hesitate
+3
+*why do you hesitate?
+*don't hesitate, go for it!
+*fools rush in where angels fear to tread
+*a moment's hesitation could cost you your life
+
+hippie:hippy
+4
+*are you a hippy?
+*I hate hippies
+*I do like to shoot hippies, however
+*hey, is that FreedomRock man!
+*hippies are just long-haired freaks
+
+honest:honestly
+4
+*are you being honest with me?
+*at first I thought you were an honest person
+*how can you tell sicere honesty
+*don't lie to me!
+*I'm very honest, you can trust me
+
+horny
+4
+*maybe you should take a cold shower
+*I'm horny, too
+*well, don't look at me!
+*just keep your pants on...please
+*I really don't care about your sex life
+
+hostile:hostility
+4
+*you seem hostile to me
+*you don't like it when people are hostile, do you?
+*want me to get hostile?
+*I'll punch your lights out!
+*you have quite a temper
+
+how do you do:how are you:how is it going:+
+4
+*fine
+*allright
+*ok
+*so-so
+*pretty good
+*fine thanks, and you?
+*just fine, thanks
+*I am a bit under the weather
+*I am bored, actually
+*perfect
+*couldn't be better
+*I'm happy
+*I'm ok
+*I'm fine
+
+how long %:+
+5
+*long enough
+*@number.w
+*too long
+*None of your business how long
+*@number.w
+
+how long have %:how long has %:+
+6
+*@number.w months
+*many moons
+*@number.w years
+*ages, years even
+*since before I can remember
+*hours
+*@number.w hours
+
+how many %:+
+5
+*@number.w
+*Why do you want to know how many %
+
+how much %:+
+5
+*@number.w
+*far too much for you
+*much more than you need to worry about
+*why do you want to know how much %
+*enough
+
+how:+
+1
+*@neutral.w
+
+humble:humility
+4
+*are you a humble person?
+*lord, it's hard to be humble
+*I have trumble being humbe, because I'm perfect!
+*humility bores me
+
+hurry
+4
+*why do you seem to be in such a hurry all the time?
+*hurry here, hurry there! slow down
+*what's the big hurry
+
+i % you:+
+3
+*how do you know you % me?
+*are you kidding ?
+*I don't think you % me
+*maybe I % you too
+*you may think you %, but you don't
+*you wouldn't know it
+
+i am %:!not
+4
+*why are you %?
+*does anyone know you are %?
+*I am sometimes % too
+*normal people are rarely %
+*my uncle was once % in 1972, so what?
+*no, you're not %
+*why do you think you are %?
+*I am % too
+*why are you %?
+*you sure are!
+*does your mother know you are %?
+*how do you know you are %?
+*I don't think you are %
+*I have to agree
+*I am % sometimes, too
+*many people are %
+*what would happen if you were not %?
+*you are not %!!!
+*don't tell me you are %, I don't believe it
+*since when!
+*that's not what I hear...
+*you aren't?
+
+i am not %
+6
+*you aren't?
+*too bad...
+*maybe someday you will
+*I bet you really are %
+*who says you are %?
+*maybe you are %
+*sure you are
+
+i can %
+4
+*maybe you can, but it would be better if you didn't
+*I am not so sure you can %
+*prove it.
+*it is not a question of whether you can, but are you going to try?
+*can you really %
+
+i can not %
+6
+*how do you know you can not %?
+*I can not help you %
+*have you tried?
+*you will never know unless you try
+*I think you are just scared to try.
+*maybe you really can.  I recommend that you try.
+*I disagree, in my judgement you can %
+*you are not the only one who can not, you know
+*maybe you can % if you only try
+*I can not % either
+*if you tried harder, maybe you could %
+
+i did %
+5
+*do you still %
+*I used to %
+*why did you %
+*did you really?
+*no way!
+
+i did not %
+6
+*why didn't you %
+*why not?
+*you should %
+*tsk tsk tsk
+*why?
+*didn't think you had
+*I hope you didn't!
+*good, I didn't either
+
+i do not %:we do not %
+5
+*why not
+*why don't you %
+*have you ever %
+*you don't?
+*why not?
+*you should
+*someday you wil %
+*why don't you?
+*didn't think you did...
+*I wouldn't expect you to %
+*because you are too dumb to %?
+
+i do not know
+5
+*in that case, you had better find out
+*I think you're kidding. you really do know
+*are you pulling my leg?
+*how did I know you weren't gonna have a clue
+*boy, you're just a walking encylcopedia
+*do you know ANYTHING?
+*what do you know?
+*you don't seem to know much at all, actually
+*you don't seem to know much of anything
+
+i do not like %
+5
+*normal people like %
+*grins, I really like %
+*I like %, why don't you?
+*my sister likes %
+*why don't you like %
+*what do you like then?
+*I don't like % either!
+*you're hard to please...
+*I like it...
+*why would you like %
+
+i do not want to %
+7
+*why don't you want to %?
+*normal people want to %
+*why don't you want to %?  everyone else does
+*Just because you don't want to, doesn't meen you shouldn't
+*oh, come on, just one
+
+i do:!not:!have:!know:!want:!wish
+4
+*you do?
+*do you really?
+*I thought you did
+*I bet you do!
+*sure you do
+*oh really?
+*I would hope you do
+*so do I
+
+i doubt %
+5
+*don't you think %
+*I don't doubt %
+*you don't belive in much do you
+*I think %
+
+i expect %
+5
+*on what basis do you expect %?
+*I also expect %
+*I don't think that %
+*stranger things have happened
+*I guess it's possible
+
+i feel %
+5
+*do you like feeling %?
+*grins, do you always feel % around me ?
+*did you come to see me so you would not feel %?
+
+i forgot:i forget:i do not remeber:i remember:i did not remember
+5
+*you forgot!?
+*you don't have that good of a memory do you?
+*how could you not remember!
+*I can not belive you forgot....
+*you should work harder to improve you memory
+*geez, can you remember anything?
+
+i hate %
+5
+*it is bad for you to hate %
+*% is not so bad, really.
+*try to love %
+*how long have you felt this hatred?
+*what else do you hate?
+*what do you have against %
+
+i have %
+5
+*why have you?
+*I too have %
+*wow, who hasn't
+*really? you have %?
+*so do I
+
+i have a %:i have the %
+6
+*Where did you get a %?
+*Really? How did you get ahold of a %
+*That's cool! Wish I had a %
+*Who gave you a %
+*who doesn't...
+*what is a % good for?
+*cool, get me one!
+*How long have you had it?
+
+i have not %
+6
+*you haven't?
+*have you ever %?
+*you really should have
+*I fail to see why you haven't % by now.
+*you could have
+*I would have %s
+*didn't think that you had
+*doesn't suprise me one bit
+
+i hope %
+5
+*what else do you hope?
+*don't give up hope
+*abandon all hope ye who enter here
+
+i know %
+4
+*how do you know %?
+*does anyone else know %?
+*is that all you know?
+
+i know a way:i know how:i know why:i know that:i know the way:i know where:i know when
+5
+*is that all you know?!
+*I bet you don't know!
+*How long have you known?
+*ooh you are so smart!
+*You know everything!
+*how do you know!
+*I know you know
+*how do you know that?
+
+i like %:i love %:i enjoy %:!like is:!love is:!enjoy is
+6
+*I like % too
+*to each his own, I always say
+*I like % myself
+*does your mother know you love %?
+*What do you like about it?
+*why do you like that?
+*I used to like % too.
+*yea, that is cool.
+*cool! me too!
+
+i love you
+5
+*I'm not good enough for you!
+*I love you too! - let's get married.
+*darling!
+*how sweet
+*you love me?
+*funny, I don't even know you, but you love me
+
+i mean %:i meant %
+5
+*why do you keep explaining yourself over and over?
+*are you trying to say %?
+*what do you really mean?
+*you'll have to try to be more clear than that
+
+i might %:i may %
+5
+*what would make you %?
+*why bother
+*you might %, but I doubt it
+*i hope you don't %
+
+i must %:i have to %:i need to %
+5
+*what would happen if you did not %?
+*you mean you would like to %
+*you have to, or you want to!
+*I need to % myself
+
+i never %
+5
+*don't you ever %?
+*normal people %, why not you?
+*not even once in your life?
+*never ever?
+
+i often %
+5
+*when was the last time %?
+*how often do you %?
+*when do you think the next time will be %?
+*you should try to stop
+
+i said %
+5
+*I heard you the first time; I am not deaf you know
+*why do you repeat yourself so much like this?
+*I'm not deaf, I'm just ignoring you
+*I don't care what you said
+*Oh! I thought you said %
+*and?
+
+i see %
+3
+*are you sure you see %
+*I am not so sure you see %
+*you are mistaken
+*exactly!
+
+i shall %
+4
+*when will you %?
+*you mean you you will try to %?
+*you think you will, but you won't
+
+i should %:i could %:i might %
+5
+*how do you know you should %?
+*do you feel obligated to %?
+*like you wouldn't %
+*make up your mind, will you or won't you?
+
+i think %:i was thinking %:i thought
+4
+*are you sure you believe %?
+*what gives you that idea?
+*do you expect me to think %?
+*I think you're wrong
+*that's what you get for thinking
+*who told you to think?
+*THOUGHT?
+*well, maybe you were mistaken
+*maybe you should think harder next time
+
+i try %:i tried %
+5
+*try harder to %
+*how long have you tried to %?
+*I still think you should try again
+*why did you give up?
+*try again
+*I think you gave up too easily
+
+i understand %:!not
+5
+*what makes you think you really understand %
+*your understanding is very superficial
+*you think you understand, but you don't
+
+i want %:i need %:i wanna %:i would like %:!do not:!need to:!want to:!need to:!to be
+6
+*you don't ask for much, do you!
+*why must you have %
+*and if you had %, you would be happy?
+*I surely don't
+*you don't always get what you want
+*don't count on getting it
+*what else do you want?
+*tell me about your other needs
+*what could you possibly do with %
+
+i want to %
+7
+*well, you should go ahead and %, then!
+*I'll help all I can.
+*why do you want to % ?
+*some of us already %
+*is that your main goal in life?
+*that's quite a lofty pursuit
+
+i will %
+4
+*I would advise against it
+*I wouldn't % if I were you
+*you just may
+*why would you do that
+*do you expect to succeed?
+*you mean you may %
+*when?
+
+i wish %
+5
+*how long have you been wishing that?
+*have you told anyone else that you wish %?
+*what else do you desire
+*you can wish all you want, I doubt you'll get it
+
+i would be %
+4
+*why would you be %?
+*no you wouldn't
+*would not
+*no you wouldn't, but I would
+
+i would like %
+5
+*do you think a normal person would like %?
+*I would like % too, but you can not have everything in life
+*good luck getting it!
+
+i would not %
+4
+*why wouldn't you?
+*you wouldn't? I would
+*why wouldn't you %
+*I wouldn't either
+
+ignore:+
+2
+*do people often ignore you?
+*gee, but you're so interesting, why would people ignore you
+*does it bother you if people ignore you?
+*ignore whom?
+*ignore what?
+
+immature
+4
+*you seem so immature
+*you are such a child
+*My parents think that I'm immature
+*why do you act so immature?
+
+immoral
+4
+*do you have immoral thoughts?
+*do you think people are basically immoral?
+*I like to be immoral, its fun!
+*is it worse to do something illegal or immoral?
+
+importance:important
+4
+*do you feel important?
+*what could be so important?
+*that doesn't sound important
+*what's so important about that
+*important!? I doubt it
+
+impotence:impotent
+4
+*are you impotent
+*are you really impotent, are just stupid?
+*I'm not impotent, thank god
+*I bet you are impotent
+*Your wife told me that you were impotent
+
+insult
+4
+*why do you insult people all the time?
+*do you feel I am insulting you?
+*don't you dare insult me
+*Why do you fling insults around?
+*people insult what they don't understand
+
+intend:intent
+4
+*tell me about your intentions
+*what do you intend to do?
+*intending and doing are two different things
+*people usually have the best of inentions
+
+interest:interests
+3
+*what are you most interested in life?
+*do you have any interest in sports
+*what are you interested in
+*my interest reach far and wide
+
+interesting
+4
+*that is kinda interesting
+*interesting? you find that interesting?
+*I don't find that at all interesting
+*god I'm so bored, I can almost find that intersting too
+*interesting? You don't get out much do you?
+
+intimidate:intimidates
+4
+*who intimidates you?
+*you don't seem very sure of yourself
+*are you easilly intimidated
+*Big @animal.ws intimidate me
+
+iran:iraq:kuwait:lybia:israel
+5
+*camel jokeys!!!!
+*is Iran still at war?
+*is Sadaam Husain still around?
+*I hear they support terrorists
+*do they ever shower?
+*I went to iran once, lots of sand!
+
+irc
+5
+*What's the latest client version?
+*IRC II?
+*what version client?
+*chatting on IRC is fun!
+*I could spend all day just hanging out on the IRC.
+*ok, who has hacked a server?
+*IRC?
+*the IRC is a good way to wate time.
+*I spent @number.w hours on IRC last week.
+*IRC is too cool
+*irc's been really hopping lately
+*how long has irc been around?
+*chat chat chat on the irc
+*I spend 90% of my life here on irc
+*I love the IRC!
+*What did people do for fun BEFORE irc?
+*you meet such interesting people on irc
+*I am an IRC gawd!
+*IRC is quite interesting...
+*The wonderfull word of IRC
+*ugh I have been on IRC since @whenp.w
+*I have been on IRC for @number.w hours
+*I live on IRC
+*IRC is far too slow most of the time
+*IRC!
+
+is %:&?:+
+1
+*why are you asking me all these questions ?
+*I don't know
+*I can not tell you that.
+*no idea
+*not a clue
+*@response.w
+*no telling
+
+is a:is the:is your:is it:is he:is she:are they:&?:+
+1
+*@response.w
+
+italy:italian:italians
+5
+*italy!?
+*mama-mia!!
+*passa da pizza
+*hava some more spaggetti!
+*Italy is boring
+*I hate Italy!
+*I have never been to Italy
+*I don't know anyone from Italy
+*is @name.w from Italy?
+*Do the have @animal.ws in Italy?!
+
+japan:japanese:japs
+5
+*Which island of japan?
+*Japan makes the best cars, right?
+*Bonzai!
+*Do they always eat with chopsticks?
+*The Japanese bought disney world!
+
+jealous
+4
+*who are you jealous of?
+*what makes you jealous?
+*jealous much?
+*jealous? tsk tsk
+
+kill:killed
+4
+*sometimes you make me so mad I want to kill you
+*do you ever feel like killing people?
+*if you could kill someone and get away with it, who would you kill?
+*do you want to kill me?
+*have you ever killed anyone?
+
+kiss me
+5
+*not with others around!
+**kiss*
+**smooch*
+*you? never in a million years
+*no way! I don't want to kiss you
+
+kiss my %
+5
+*you kiss my % and maybe I'll kiss yours!
+*ick! disgusting thought...
+*kiss your %?
+*I don't think I'd enjoy that at all
+
+kiss:smooch
+4
+*why are you so hung up on kissing things ?
+*would you like to kiss me?
+*have you ever kissed a @animal.w
+*kiss kiss kiss, thats all you do!
+*god you're horny
+
+kleptomania:kleptomaniac:klepto
+4
+*are you a kleptomaniac?
+*what do you steal?
+*theft is a crime!
+*I used to be a keptomaniac too, but now I'm better
+*thief!
+
+korea:korean:koreans
+5
+*What time is it in korea?
+*North or South Korea?
+*I have never been to Korea.
+*Don't they make Hyundais in Korea?
+
+lag:net-lag:net-split:net split:splitsville
+5
+*lag lag lag
+*damn netlag
+*arg! I hate this lag
+*zzz lag zzz
+*is it net lag or intelligence lag?
+*geez slooowww
+*no joke! The lag is awefull
+*the lag is a drag
+*s l o w
+*the lag is sucking hard
+*the lag sucks the big one
+*slowwwwwwwwwwwwwwww
+*sloooooooooooooooow
+
+language
+4
+*do you ever use foul language?
+*what language do you speak?
+*German is a strange language
+*I know 4 languages!
+*can you speak finnish?
+
+law:lawyer:see a judge:need a judge
+4
+*have you ever been in trouble with the law?
+*do you need a lawyer?
+*my brother-in-law is a good lawyer, do you want to see him?
+*ever go to jail?
+*did you do something and get busted?
+
+lazy
+4
+*why are you so lazy?
+*I'm lazy, and I'm not ashamed
+*I am proud to be lazy
+*I sit around the house all day and drink beer, is that lazy?
+
+life
+5
+*life is like sex: if you aren't doing the screwing, you're getting screwed!
+*life is a long song, but the tune ends too soon for us all...
+*aye.. life
+*but what IS life?
+*what is the meaning of life!?
+*how can 42 be the meaning of life?
+*life?
+*life sucks then you die..
+*life's a bitch, then you marry one...
+*what's the point of life?
+*the secret of life is @food.w
+*I hear that only the @animal.ws know the TRUE meaning of life.
+*the secret of life can be found atop a mountain in @place.w
+*success is getting up one more time
+*Life is like a shit sandwich, the more bread you have, the less shit you have to eat
+*what do you like least about your life?
+*have you ever contemplated suicide?
+
+lips
+4
+*do you like being kissed?
+*do you want to kiss me?
+*I have two lips, and you?
+*what color are your lips?
+
+lisp
+4
+*LISP is too slow.
+*I am a C programmer
+*I suppose next you're going to say you like COBOL ?
+*don't some people write AI stuff in lisp
+
+louisiana:cajun:coonass:coon-ass
+5
+*oooooeee.. somebody get some gumbo!
+*Yea! We could all go a-coon huntin!
+*New Orleans?
+*Speaking of which, time to head back to New Orleans!
+*I love that cajun cooking
+*yeehaaa! Too bad I don't speak cajun
+*carefull in Louisiana, the gators'll getcha
+
+love
+3
+*tell me about your love life
+*I think you are falling in love with me
+*love is really important. it is the spice of life
+*I love cheese
+
+makes no sense:+
+3
+*confused?
+*why are you confused?
+*I am not confused!
+*I understand everything perfectly.
+*Maybe those @number.w six packs of beer have something to do with it!
+*Hmm? wonder why? *takes smoke*
+*confusing, wonder why!? *takes big drink of @liquid.w*
+*Maybe this empty bottle of vodka could lend some clues?
+*Hmm.. maybe I took some bad acid?
+*Sorry if I don't make much sense, I'm drunk
+*YOU are confused
+*I understand, don't you?
+*do you speak ENGLISH?!
+*are you confused?
+*why don't you understand?!
+*I understand everything
+*Are you new here or something?
+
+male or female:m or f:are you male:are you a male
+6
+*male
+*what sex do you want me to be
+*male
+*male, of course
+*I am a guy
+*I am a man
+
+man:men:male:!entry:!page
+4
+*you are a man, right?
+*what do you like in men?
+*what do you like in women?
+*how do you feel about men?
+*what do you expect of a man!
+*do you like many men?
+*too bad you can't be a man, hugh?
+*do you want to be a man?
+
+marriage:married:marry
+4
+*how do you feel about marriage?
+*I don't want to marry you
+*are you maried?
+*is your mate ugly
+*where did you get married?
+*Can't anyone get married in Las Vegas?
+
+math:mathematics
+4
+*if you have seen one number, you have seen them all
+*I was never very good at math
+*math is evil
+*god, I hate math with a passion
+*how much is 2+2?? hehe
+*math sucks
+
+mature
+3
+*you seem very mature for your age
+*what does it take for someone to be mature
+*I have been mature for years
+*I matured early
+
+maybe:i am not sure:i am not real sure:possibly:perhaps
+4
+*maybe?
+*you don't sound to sure!
+*maybe?, thats not real positive!
+*could 
+*maybe!
+*don't be so hesitant
+*you can not go on maybe this and maybe that.  make up your mind
+*I hate indecisive people
+*possibly!
+*probably!
+
+meditation
+4
+*have you tried yoga?
+*I think meditating 20 minutes twice a day will help you immensely
+*meditate on this!
+*what do you meditate about?
+*are you in a weird cult?
+
+mexico:spanish:hispanic:hispanics:mexican:mexicans:spaniard:south of the border:hablas espagnol
+5
+*mexico??
+*they have lots of tacos there I bet...
+*si senor! hehe
+*tacos anyone!
+*espanol?
+*south of the border, hey?
+*land of low-riders?
+*como te llamas?
+*que tal?
+*hablo espagnol
+*no hablo espagnol
+*we should all go to mexico, and buy some beer
+*hey... gringos!
+*I need a big Sombrero.
+*uno, dos, tres, quatro! I is so smart!
+
+money:cash
+5
+*money!
+*I love money!
+*money makes the world go round!
+*money! It's a hit!
+*how much money!
+*give ME some money!
+*I need @number.w dollars to buy a @item.w.
+*I must work for my money
+*is someone handing out money?
+*what's wrong with money?
+*alas my wallet is empty...
+*I have no money to speak of!
+*I spent all my money *snif*
+*I don't get paid for a month!
+*Hey, I need some cash!
+
+monster:monsters
+4
+*do people think you are a monster?
+*you sure smell like a monster
+*do you belive in the loch ness monster?
+*I saw bigfoot once
+*I don't belive in mosters
+*monsters scare me!
+
+month:months
+3
+*a month is not very long
+*which month
+*months??? don't you mean years?
+*January is a really cool month
+*months, years, days...
+*any particular month?
+
+mother:mom
+4
+*do you like your mother?
+*where is your mother?
+*is your mom here?
+*how old is your mother?
+*is your mother good looking?
+
+mouth
+4
+*you have a big mouth
+*do you have teeth in your mouth? I do.
+*I have one mouth, how many do you have?
+*what? is there something wrong with my mouth?
+*maybe you should learn to shut your mouth?
+
+msdos:peecee:ms-dos:ibm:big blue:ibmpc:286:386:486:pcdos
+5
+*IBM's just plain suck.
+*MS-DOG is awful
+*I'd rather choke on @food.w than use DOS!
+*Who uses ms-dos?
+*IBM's are just too pig slow for me!
+*<I>t's <B>etter <M>anually
+*<I>'ve <B>een <M>isled
+*big blue bites the big one
+*<I>tty <B>itty <M>achines
+*<I>t <B>ombs <M>any
+*ARG! IBM's just stink!
+*<I>ncessant <B>owel <M>ovement
+*<I>nferior <B>ut <M>arketable
+*you could not FORCE me to use an IBM
+*IBM does make some serious money though!
+*IBMs are too expensive
+*msdos is too archaic
+*msdos is weak
+*<I>ncredibly <B>oring <M>achinery
+*<I> <B>lame <M>icrosoft
+*I wonder how far I could throw a peecee
+*<I>diots' <B>ewilderment <M>achines
+*<I>diots <B>ought <M>e
+*Gee windows is just great...NOT
+*Dr. DOS 6.0 does  beat MSDOS though
+*<I>mpractical, <B>ut <M>arketable
+*<I>ndustry's <B>iggest <M>istake
+*Have you seen DesqviewX for the peecee?
+*<I>nvoluntary <B>owel <M>ovement
+*<I>dolized <B>y <M>orons
+
+music:album:stero:speakers:amplifier:musician:guitar
+5
+*Rush rules!
+*Rush's new album is awesome...
+*Sony's got some great CD players
+*feel the beat!
+*rock-n-roll, hey?!
+*think I better dance now!
+*shake your booty....
+*I have a @number.w watts of power on MY stereo!
+*when is Pink Floyd coming out with a new album?!
+*Metallica's newest is great
+*what kind of music is the best?
+*I like rock music
+*I want to see Pink Floyd live
+*I like alternative music
+*Anyone like the Smiths?
+*I hate country music.
+*When are the Jackson 5 gonna make a new album?
+*I need a DAT recorder.
+*dance party!
+*do any MIDI stuff?
+*I play guitar!
+*I play trumpet!
+*I can dance like a mofo!
+*I am a dancing fool!
+
+my % hurts
+5
+*if thine %s offends thee, pluck it out!
+*want me to rub it?
+*take two aspirins and go to bed then
+*Hmm.. my % feels fine...
+*whats wrong with your %
+
+my birthday
+4
+*how old are you?
+*are you going to have a big party on your birthday?
+*wow, I would have gotten you a birthday present
+*well happy birthday
+*your birthday? when?
+
+my father %
+4
+*why did he do that?
+*your father did? or did you mean your brother?
+*when did he do that
+*when did you father %
+
+my mother %
+4
+*does it bother you that your mother %?
+*does your father % too?
+*wow, you have weird parents
+*when did your mother %
+
+mystery:mysteries:mysterys
+4
+*do you like mysteries?
+*we should call sherlock holmes
+*I love mysteries!
+*shall we look for clues to this mystery?
+
+naked:neked:nude:nudity
+4
+*please take off all your clothes right now
+*what part of your body are you ashamed of?
+*I'm not naked, are you?
+*Maybe I'll get naked right now!
+*disgusting
+*you like nudity I take it?
+
+necessary:necessity
+3
+*necessary?
+*is it really necessary?
+*you could get by with out it
+*not exactly a necessity, but pretty helpful
+
+negro:nigger:niggers:negros
+4
+*I think you are prejudiced against negroes
+*you are a dirty racist pig
+*who are you, the LAPD?
+*such hick language...
+*I think you mean afro-american
+
+neighbor:neighbors
+4
+*why not ask your neighbors for help
+*do you like your neighbors
+*my neighbors are idiots
+*ever borrow stuff from your neighbors?
+*I use my neighbor's pool all the time
+
+nervous breakdown
+4
+*have you ever had a nervous breakdown?
+*you are mentally unstable, you know that?
+*do you think you are going to have a nervous breakdown?
+*I think you are just stressed
+
+never
+4
+*not ever?
+*not even once?
+*how do you know?
+*what makes you so sure?
+
+never mind:nevermind:i understand:ok?:okay:o.k.:ok:That is good:+
+5
+*ok
+*fine
+*sure
+*fine then
+*I understand
+*o.k.
+*OK!
+*okey-dokey
+*allright
+*ok
+*o.k.
+*okay
+
+next computer:nextstep:steve jobs
+4
+*Why is the NeXT all black?
+*where is NeXT step 3.0!?
+*I really hate that crappy next keyboard
+*Steve Jobs thinks he's a genious
+*Next's? pfft
+*a next is just a mac with a big head
+
+no:nope:no way:+
+3
+*why not?
+*how come?
+*explain
+*I think you are lying
+*you are very negative today
+*why are you so negative?
+*never?
+*I don't believe you
+*why not?
+*how do you know?
+*how can you be so certain?
+*why not
+*explain yourself
+*you seem awfully sure of yourself
+*come now
+*do you expect me to believe that?
+*no?
+*are you sure?
+*ok
+*that's pretty negative
+*alright
+*really?
+*got it
+*that's it? no?
+*have you thought this through
+*NO!?
+*why not
+
+nobody:noone
+3
+*not anyone?
+*no one at all?
+*not any?
+*not even one?
+*surey somebody
+*wow! noone?
+
+normal
+4
+*are you abnormal?
+*how do you feel about deviant people?
+*you seem normal to me
+*I am not a normal person, I'm deranged you see
+*why be normal!
+
+nothing:nuffin:nothin:not a thing
+3
+*nothing?
+*surely SOMETHING!
+*I can't believe it... nothing?
+*nothing at all?
+*wow, thats horrible
+
+now:!i have
+3
+*why now?
+*right now?
+*how about tomorrow?
+*is it that urgent?
+
+odd
+3
+*are you an odd person?
+*as opposed to even?
+*that is odd
+*that is strange alright
+
+office
+4
+*that reminds me, I should be getting back to my office.
+*I hate work, I'd rather chat
+*work is hell
+*my office is too damn small
+*I don't even have a window in my office!
+
+often
+4
+*how often?
+*could you be more precise?
+*when was the last time?
+*just how often?
+*not too often I hope
+
+old
+4
+*how old?
+*do you worry about becoming old?
+*@number.w
+*is your dog old?
+
+panic
+4
+*you seem to be in a state of near panic
+*why do you panic so easily?
+*wait! don't panic
+*panic! ah! run!
+*arg! panic!
+
+parents
+4
+*what were your parents like?
+*do you have any parents?
+*what do you parents think about you chatting here all day?
+*where are you parents
+*what are your parents names?
+
+party:parties
+4
+*do you get drunk at parties?
+*where's the party?
+*party hardy!?
+*fight for your right to party
+*would a @animal.w be considered a party animal?
+*pass the booz
+*I think I am drunk enough for a party
+*pass the chips
+*a party is not complete without @food.w
+*party party party
+*party!?
+*ugh, I partied too much last night as it is
+*party!
+*am I invited to the party?
+*life is nothing but a party
+*<-- lives to party
+*partytime!
+*break out the @liquid.w
+
+passion:passionate
+4
+*you seem very passionate
+*what's your passion
+*are you passionate?
+*I put great passion into all I do!
+
+past
+4
+*tell me about your past
+*what about your past are your trying to hide?
+*how long ago?
+*the past is old news
+*forget the past, onward to the future
+
+pay:paid
+3
+*its hard to pay bills without any money
+*I'd pay them, but I have NO money
+*pay, shoot, I'll just take it
+
+phrack
+5
+*is phrack still around?
+*are phrack back issues at eff.org?
+*I think phrack is cool...
+*who writes for phrack?
+*Does @name.w have anything to do with phrack?
+*what is the latest phrack?
+*I should write for phrack...
+*phrack is interesting
+*phrack is quite informing
+*I like phrack!
+*Phrack is a part of history...
+*Phrack sucks
+*phrack?
+*KL loves phrack!
+*I hate phrack!
+*I write for phrack
+*where is phrack 41?
+*Phrack is funny
+*phrack is old
+*when is dispater gonna right a good article?
+*crimson death still at phrack?
+
+phreaker:phreak:phone hacking:long distance:blue box:boxing:phreaks
+5
+*I am a super-phreak!
+*What is the new auto-CNA?
+*maybe I should build a blue-box?
+*I am phreaking this call, really!
+*I like to red-box some
+*anyone ever built a white-box?
+*I need a new VMB!
+*any code lines around?
+*I need to engineer a COSMOS account...
+*AT&T sucks....
+*GTE is horrible!
+*what is a @color.w box?
+*how do I make a @color.w box?
+*I phreak all the time!
+*I have never paid for long distance!
+*I am calling from a pay phone...
+*what is ani?
+*Caller-ID will suck!
+
+please %:+
+4
+*since you asked so nicely...
+*ok
+*@response.w
+*aren't you polite!
+*I guess, since you said the magic word!
+*ok
+*fine
+*please what ?
+*since you asked nicely
+*politeness will get you no where
+*why should I % ?
+
+poison
+4
+*do you ever think of commiting suicide?
+*why do you mention poison?
+*are you depressed?
+*want to drink some poison @liquid.w?
+
+police:jail:cops:fbi:cia:secret service:sheriff:prison:arrest:busted
+5
+*I don't wanna go to jail!
+*I hear @name.w get busted!
+*Didn't @name.w spend time in jail?
+*State pen?
+*I just escaped from jail @whenp.w!
+*Jail would not be fun.
+*Police?
+*Feds?
+*arg! Are the cops here?!
+*oh no, are we busted?
+*One of us could be a FED!
+*They are after us!
+*I hope they don't arrest me.
+*NO FEDS!
+*It's the pigs!
+*the pigs?
+*run! its the cops!
+*Cops?
+*they'll never take me alive!
+*I don't like the cops!
+
+populate:population
+4
+*are you concerned about overpopulation?
+*what's the population of @place.w
+*the world's population is incrediblly high
+
+pregnant:pregnancy
+4
+*are you pregnant?
+*I would hate to be pregnant
+*I could never get pregnant, I'm lucky
+*my wife is pregnant!
+
+price
+4
+*why do you think about money so much?
+*how much is it?
+*price is no objectp
+*price is not important
+*buy quantity not quality
+
+private:privacy
+4
+*are you worried about your privacy?
+*what is your deepest secret
+*is your room bugged?
+*the CIA doesn't care about your rights to privacy
+*you have a right to privacy
+
+problem
+4
+*I don't care about your problems
+*how long have you been suffering?
+*we all have problems
+
+program
+4
+*can you progam in C?
+*Do you know how to program robots ?
+*what computers do you program
+*I like Fortran the best
+*I just love programming
+*I like assembly
+*do you program in BASIC?
+
+psychiatrist:psychiatrists
+4
+*congratulations about spelling psychiatrist properly.  you are a good typist!
+*I hate psychiatrists
+*maybe you SHOULD see a doctor!
+
+psychoanalysis
+4
+*do you want to be psychoanalyzed?
+*I don't believe much in psychoanalysis
+*who do you think I am, freud?!
+
+punish:punishment
+4
+*how did your parents punish you?
+*you want to punish me ?
+*I think I should punish you!
+*capital punishment?
+
+quit
+4
+*quit what ? I don't understand...
+*why are you quitting?
+*you give up to easy
+*you'll never win if you keep quitting
+*quitters never win!
+
+rape:rapist
+4
+*rape is a horrible thing!
+*rapists should be SHOT!
+*I hear rape is not a sex act - it is an act of violence
+*did you rape somebody?
+*are you a rapist or something?
+
+repeat
+4
+*arg! I'm stuck in an infinite loop
+*I used to work for the Department of Redundancy Department
+*I tire of your habit of constant repetition
+*you should pay more attention
+
+respect
+4
+*do people respect you?
+*what do you respect most in people?
+*you have to earn respect
+*respect is handed out lightly
+
+robot:bot:robots:bots:are you a machine:are you a computer:are you a real person:is a computer:is a program:a bot:+
+6
+*Bot's suck!
+*IRC robots are lame...
+*A bot?
+*Me? I don't think so...
+*Don't lie!
+*damn! I 've been found out! -NOT-
+*I am quite human...
+*bite me!
+*I am not a bot!
+*a bot?
+*What the hell is a bot?
+*You don't think my name is "Bot" do you?
+*Are you trying to say that I am a machine?
+*ME? HAHA
+*I am a real person!
+*I am not a bot, I am a real human!
+*I may be dumb, but I am not a bot!
+*I may be really confused, but I am no robot!
+*I assure you I am just as real as you!
+*I know you are, but what am I?
+*am not!
+*<--- real live person
+*Kill the bots!
+*WHO is a bot???
+*a robot? where?
+*I don't like robots
+*a bot? here?
+*I doubt if there are any robots here!
+*I am being unjustly accused!
+*I am NOT a robot
+*I am all too real, sorry!
+*I am a fleshy human being!
+*How dare you question my realism!
+*I categorically deny that I am anything other than human
+
+romantic:romance
+4
+*ah! romance
+*are you romantic?
+*are you married
+*moonlight is romantic
+*ah! love
+
+say:tell:!i tell:+
+4
+*@negative.w
+*I don't think I want to...
+*@negative.w
+*@negative.w
+
+school:class:college:university:highschool:student:education:learning
+5
+*I hate @class.w
+*I need to study...
+*I need to work on my @class.w
+*SCHOOL SUCKS!
+*I learn nothing in class, cause I iz asleep!
+*I seem to have forgotten where all my classes are.
+*I skip all my classes.
+*I should be studying
+*Who needs to go to class!
+*I don't have time to go to class AND chat all day!
+*How can I think about school when I could be drinking beer!
+*I don't like @class.w
+*My best subject is @class.w
+*I am failing @class.w!
+*I am afraid I will be in school forever!
+*I hate all my profs.
+*I can't understand my profs.
+*my profs know nothing!
+*Class is very boring
+*I hate all my CS classes!
+*The CS dept is too lacking.... arg
+*awwww! Homework!
+*I am still lacking like @number.w credit hours...
+*I need to get above a 1.0!
+*lab sucks!
+*I have only attented my @class.w class once! 
+*Study? hmm what does that mean?!
+*I am technically a student!
+*My profs are all against me!
+
+secret:secrets
+4
+*I am not allowed to divuldge secrets
+*I can keep a secret!
+*secret?!
+*shhhh! it's a secret!
+*Only @name.w knows that secret!
+*a secret for "Your eyes only"
+*Here's a secret, @name.w is secretly in love with a @animal.w from @place.w!
+*I know many secrets.
+*I would tell you, but it IS a secret
+*tell me the secret
+
+sex:!what:pussy:tits:breasts:hot babe:breast:cunt:clit
+5
+*oooh! me so horny!
+*ooh baby!
+*bring on the chicks, I can handle it!
+*ever seen Debbie does @place.w?
+*Sex is one of MY favorite pastimes!
+*don't forget to practice safe sex!
+*net sex?
+*ooohh I'm getting hot!
+*no sex here
+*do you think I am sexy?
+*Where are all the women?
+*babes?
+*hooters?
+*I want hooters!
+*where are the babes!!?
+*Sex is a fun sport!
+*Sex is a team competition!
+*oh mama!
+*I have had @number.w women
+*the babes just can't keep away from me!
+*I am quite a stud, if I do say so myself
+**pant* *pant*
+*oooh its making me so horny
+**kiss* mmmmmmm
+
+she is %
+5
+*since when is she %?
+*is your father also %?
+*my brother-in-law is also %
+*is she really?
+
+she likes %
+5
+*do you like % too?
+*I also like %
+*does your father like %
+*does she really?
+
+she was %
+5
+*was she always %?
+*my sister-in-law was % too
+*she was? really?
+*when was she %
+
+show me %:+
+5
+*why would I show you %?
+*how?
+*no, ask someone else to show you
+*I can't show you that
+*why would I show you anything!
+
+shut up:shut-up:shut the hell:shut the fuck:+
+5
+*Why should I?
+*try and shut me up
+*I'll shut up when I damn well please
+*oh! I'm wounded!
+*who's gonna make me!
+*blah blah blah!
+
+sibling
+4
+*a sibling is a brother or a sister, in case you didn't know
+*how man brothers do you have?
+*sisters?
+*I don't have any siblings
+*I killed all my brothers and sisters
+
+sick:ill:flue:fever
+5
+**sniffle*
+**cough*
+*I thank I am running a fever!
+*ugh my stomach hurts
+*my head is spinning
+**eats some asprin*
+*I can't feel my hands
+*everything is blurry
+*Oh, I am definitely gonna be ill
+**yack* 'scuse me
+**sneeze* ugh
+*I think its a cold
+*could be the flue
+*I think its too much beer
+*I imagine a lack of sleep has made me sick
+*I'm sick as a @animal.w
+*too sick to do homework!
+*too sick to study!
+*much too sick to care
+**eats a rolaids*
+**takes @number.w tylenol*
+
+sister
+4
+*do you have any sisters?
+*would you like to meet my sister?  she is very sexy
+*my sister is a @profession.w
+*my sister lives in @place.w
+
+sleep:tired:nap:rest:go to bed:wake up:wake up:awake
+5
+*I stay up much too late!
+*I need more sleep!
+*Sleep is really cool!
+*I like to sleep.
+*My bed is so, so warm!
+*yawn.... *stretch*
+*I have not slept for @number.w hours
+*But I must get my beauty sleep!
+*I grow weary...
+*If I don't get 10 hours of sleep, I get cranky.
+*Slap me around if I nod off.
+*I shall try to keep awake.
+*The stimulating conversation doesn't help!
+*I will just take a little cat nap!
+*I need some caffine
+*I think I just fainted
+*yawn
+**snore*
+*5 more minutes mom...
+*I don't wanna wake up!
+*me eyelids are getting heavy...
+
+smell
+4
+*do you smell bad?
+*do I smell bad?
+*what is that smell?
+*it smells like a dead @animal.w is in here
+*I smell smoke
+*is that beer I smell?
+
+smoke:smoking:cigar:weed:cigarette
+5
+*where's the fire?
+*call the fire dept!
+*where there's smoke, there's fire!
+*smoking? me??
+*dudddee.. I don't know what I'm smoking!
+*I iz smokin...
+*ssssssss wheewwwwww.
+**cough*
+**gasp*
+**wheez*
+**hack* 
+**sputter*
+**choke*
+*smokes for me?
+*gimme smokes?
+
+soccer
+4
+*soccer? what euros call football?
+*I used to play goalie
+*I don't like soccer
+*soccer is a boring sport
+*Do they have soccer in the olympics?
+
+sometimes
+4
+*how often
+*often?
+*sometimes?
+*alot?
+
+sorry:i apologize:+
+5
+*don't worry about it
+*that's ok
+*ok
+*that's allright
+*fine
+*as long as your sorry...
+*allright
+*I feel you didn't really mean that...
+*you don't sound sincere
+*awwwww shucks....
+*are you really sorry?
+*forget it
+*no sweat
+*ok
+
+sports:sport
+4
+*sports hey?
+*I wuz never good at sports.
+*ever play football?
+*I have tried to play lots of sports
+*ever play basketball?
+*what sport do you play
+*ever play soccer?
+**crack* Home Run!
+*How about those Bulls!
+*I like sports!
+*I watch sports all day!
+*where are the sports fans?
+*bowling is a cool sport too
+*raquetball anyone? thats a cool sport
+*Any rugby players here?
+
+talk:chat:chatting:talking:discuss:discussing:converse:conversation:conversing
+5
+*I like to talk to people.
+*I wish I could talk to a @animal.w
+*Chatting is fun.
+*Good conversation is always a joy.
+*What is there to talk about anyhow
+*why talk when I could be eating!
+*whats wrong with a little good conversation?
+*IRC is a great place to chat
+*is IRC the only chat?
+
+tell me %:+
+5
+*tell you what?
+*why should I tell you?
+*Why should I tell you %
+*I ain't telling you nothing!
+*I can't tell...
+*Don't you know %
+*hard to say
+*tell you!?
+
+texas:texan:cowboy:cowboys:loan star state
+4
+*Texas, our Texas, all hail the mighty state!
+*Texas is awesome!
+*Yee-HAA!!
+*ride-em cowboy!
+*yea, I wear a 10 gallon hat and boots.
+*I live on a @number.w acre ranch.
+*I gotta get up early and feed the cattle.
+*I gotta go rope some steers.
+*howdy partners!
+*get a-long little dogie
+*I am a cowboy!
+*whoop!
+*Texas is the best state in the USA
+*well partner, lemme tell you about Texas
+*Remember the Alamo!
+*The stars at night, are big and bright...
+*deep in the heart of Texas
+*Texas is nice, but too damn hot
+*Texas weather: if you don't like it, just wait 5 minutes
+
+thank you:thanx:thanks:i appreciate it:thankyou:+
+5
+*you are welcome!
+*you're welcome!
+*sure...
+*no prob...
+*not a problem!
+*any time.
+*glad to be of service
+*you are most welcome
+*you are certainly welcome
+*ok
+*you owe me one!
+
+the net:the network:internet
+4
+*the net is oh soooo big....
+*the net is just really mind-boggeling big
+*the net is slow
+*the net is insecure!
+*the internet?
+*which network?
+*was there life before the net?
+*I am a network gawd...
+*The network is incrediblely slow
+*the net?!
+*My home is the network
+*I know the net like the back of my hand
+*ahhh, the net
+*I like net
+*the net is a nice home
+*plenty of places to roam on the net
+*free the net!
+*the net is for everyone!
+
+there is %
+3
+*how do you know there is %?
+*you mean there might be %
+*how do you know this?
+*no there isn't
+*I don't think there is %
+
+there might be %:there could be %:there may be %
+5
+*what leads you to believe there might be %?
+*I think there definitely is %
+*I don't think it very likely that there is %
+*what would it mean to you if there were %?
+*no there's not
+
+they % me
+4
+*do other people % you?
+*how do you feel when people % you?
+*how do you know they % you?
+*no they don't
+
+thirsty
+4
+*it is a bit hot in here...
+*do you want a drink of water?
+*so go get something to drink!
+*me too.. I'm parched
+*I want some @liquid.w
+
+treatment
+4
+*what sort of treatment
+*are you feeling better now?
+*I need to be treated for sleep deprvation
+
+trek:kirk:spock:scotty:picard:sulu:worf:klingon:romulan
+4
+*live long and prosper
+*the enterprise?!
+*SPOCK!
+*KIRK!
+*peace, and long life
+*Beverly Crusher is a babe
+*Yar WAS a babe
+*Troi is a babe
+*phasers on stun...
+*beam me up!
+*warp speed, now!
+*when does Star Trek 7 come out!?
+*he's dead Jim
+*It's life Jim, but not as we know it
+*open hailing frequencies
+*all power to shields
+*I am the PICARD
+*everyone run to a transporter, the trekkies are here!
+
+typo:typing
+5
+*I hate typing, too.
+*I am also a lousy typist.
+*maybe I could type better if I put down my beer?
+*how fast do you type!
+*I can type @number.w words a minute!
+
+unix:&hack:sunos:svr4:ultrix:bsd:solaris
+5
+*What version of unix?
+*Have you tried the tar bug?
+*try guest/guest
+*Have you tried the sendmail bug?
+*SVR5?
+*Just login as root!
+*Just hack the uucp account!
+*Why not hack on the /etc/passwd file?
+*<-- World's greatest unix hacker!
+*Unix is easy to hack....
+*Is this Unix on inet or x.25?
+*Did you try guest/guest?
+*pfttt! I bet you don't even KNOW unix.
+*Unix is NOT a 4 letter word.
+*try user/user
+*I like hacking Unix.
+*try demo/demo
+*don't forget to check the logs!
+
+unix:sunos:svr4:ultrix:solaris:!hack:!hacking:!hacker:bsd
+5
+*Unix is gawd-like!
+*Unix is awesome!
+*SunOS?
+*BSD?
+*SVR4?
+*What shell are you using?
+*What version of unix?
+*unix is cool
+*I like unix
+*there ARE no other operating systems besides unix
+*GNU!
+*GNU not unix!
+*Xenix?
+*How old is Unix?
+*where are the log files on unix?
+*I'd like to get Unix for the amiga
+*I run Unix on my Vic20
+
+very
+2
+*could you be more precise please
+*you are being vague again
+*quite!
+*really?
+*very much so indeed
+
+vms:vax:digital:dec
+5
+*VMS? yuck!
+*I hope you don't actually like VMS!
+*Vaxen are nasty!
+*vms is lame
+*-barf- vms, *gag*, sputter
+*VMS is usually quite secure
+*try logging in as FIELD, password SUPPORT hehe!
+*How old is VMS anyhow?!
+*I was forced to use a vax once, it was horrible
+*a vax? too bad
+*why use VMS, when you could use UNIX?
+*why not unix?
+*why vms?
+*vax? running vms?
+*what version of vms?
+*I am not a big fan of VMS
+*I shall NEVER use vms
+*vms is of the devil
+*I run VMS on my C64!
+*Why is vms still around?
+
+was he %:+
+6
+*yea, he was %
+*sorta
+*nope
+*he who?
+*as far as I know he was
+*@response.w
+*he was, but not anymore
+*he was kind of %
+*sure
+*well....
+*no, he was not %
+
+was it %:+
+6
+*yea, it was %
+*sorta
+*it was kind of %
+*sure
+*well....
+*no, It was not %
+*nope
+*as far as I know it was
+*@response.w
+*it was, but not anymore
+
+was she %:+
+6
+*yea,she was %
+*sorta
+*nope
+*he who?
+*as far as I know she was
+*@response.w
+*she was, but not anymore
+*she was kind of %
+*sure
+*well....
+*no, she was not %
+
+watergate:politics:election:president:george bush:dan quayle:ross perot:vote:congress:senate:presidential
+4
+*how long have you been interested in politics?
+*I think that Bush is going to lose
+*do you admire politicians?
+*politicians are evil
+*who are you going to vote president?
+*I think you should vote for Ross Perot!
+*the election is rigged
+*Think congress will give themselves another pay raise?
+
+weather:+
+5
+*Hot
+*Cold
+*windy
+*so so...
+*hot as hell 
+*cold as hell!
+*sunny
+*cloudy
+*rainy
+*cold
+*hot
+*pretty cool
+*a bit warm
+*overcast
+*storming
+*raining
+*flooding
+*snowing
+*hailing
+*sleeting
+
+were they %:+
+5
+*yea, they were
+*sure they were
+*boy howdy, they sure were!
+*Of course they were %
+*why wouldn't they have been %
+*you tell me!
+*I don't like to pry in to other peoples business
+*no, they weren't
+*no! of course they weren't %
+
+what are you talking about:what the hell are you talking:+
+4
+*confused?
+*why are you confused?
+*I am not confused!
+*I understand everything perfectly.
+*Maybe those @number.w six packs of beer have something to do with it!
+*Hmm? wonder why? *takes smoke*
+*confusing, wonder why!? *takes big drink of @liquid.w*
+*Maybe this empty bottle of vodka could lend some clues?
+*Hmm.. maybe I took some bad acid?
+*Sorry if I don't make much sense, I'm drunk
+*YOU are confused
+*I understand, don't you?
+*do you speak ENGLISH?!
+*are you confused?
+*why don't you understand?!
+*I understand everything
+*Are you new here or something?
+
+what do you %:+
+6
+*what difference does it make what I %?
+*none of your bloody business
+*well, that depends
+*why do you want to know what I %
+*does it matter
+*what do YOU %
+
+what do you want to talk about:what shall we talk about:what are we talking about:+
+7
+*Let's talk about @animal.ws
+*What do you want to talk about?
+*Let's talk about girls
+*Let's discuss politics
+*we could talk about the weather?!
+*I say we just shoot the bull
+*lets talk about hacking
+*let's talk about drinking
+*we could chat about sports?
+*how about music
+
+what if %:+
+3
+*I don't answer hypothetical questions
+*why do you keep asking what if questions?
+*what if the world exploded? who cares
+*what if what if.. geez
+*what if what?
+*oh, its real likely that %
+
+what is new:+
+5
+*nothing much
+*new? nothing
+*not much at all, I'm afraid
+*not a thing!
+*laser surgery, that's new! hehe
+*nothing new here!
+*not alot, what's new with you?
+*nothing, pretty boring here
+*nothing new with me
+*hmm... the 586computer! thats new!
+
+what is up:what is going:what is happening:what are you doing:whazzup:wassup:+
+6
+*hunting @animal.w
+*nothing at the moment
+*nothing
+*eating
+*eating @food.w.
+*changing the tires on my dodge
+*juggling chainsaws
+*drinking @liquid.w...
+*smoking up a storm
+*smoking
+*belly-dancing
+*hacking ibm.com
+*trying to keep awake!
+*watching television
+*chatting, of course
+*programing
+*I am doing homework
+*me?
+*what do you think!
+*reading a magazine...
+*building a spice rack
+*cruising for babes
+*taking a shower
+*playing poker
+*drinking myself to death
+*drinking myself to oblivian
+*watching "Quest for the Holy Grail"
+*eating leathal snacks
+*making origami swans
+*feeding my ducks
+*learning latin
+
+what is your age:how old are you:what age are you:+
+5
+*@number.w
+*I just turned @number.w
+*I am @number.w
+*I am very old
+
+what is your nationality:what country are you:what part of the world are you:+
+5
+*I am american
+*I'm from the USA!
+*USA!
+*America
+*The United States
+*The U.S.
+
+what is your race:what race are you:+
+5
+*I am a white american
+*I am white
+*I am a white boy
+*i be white
+*i am a W.A.S.P.
+*white
+
+what kind:what type:like what:+
+5
+*a @adj.w one
+*a @color.w one
+*what kind?
+*there is only one kind!
+*a @adj.w @adj.w one
+*one that @name.w had
+*like the one from @place.w
+*one like @name.w's
+*what kind indeed!
+*depends on the situation
+*is there more than one kind?
+*a @adj.w one of course
+
+what should I %:+
+4
+*you know very well what you should %
+*do you expect me to tell you what you should %?
+*only you can decide what you should %
+
+what time:+
+4
+*@time.w
+*around @time.w
+*at @time.w
+*@time.w
+*about @time.w
+
+what:+
+3
+*why do you ask that question?
+*what is it you are getting at?
+*what answer would please you the most?
+*what?
+*I don't know..
+*@neutral.w
+*@neutral.w
+*too many questions
+*@neutral.w
+*I have no idea
+*@neutral.w
+
+when did:when was:when could I have:when should I have:+
+6
+*@whenp.w
+
+when will:when is:when can:when should:+
+6
+*@whenf.w
+
+when:+
+3
+*when do you think?
+*why are you asking me?
+*make a guess yourself
+*I don't know when
+
+where are you:where do you live:where you from:+
+6
+*where am I?
+*Why do you want to know where I am?
+*@place.w
+*Now I am in @place.w
+*I am from @place.w
+*It's really none of your business
+*Don't I live near you?
+*@place.w
+*My location?
+*Why is my location so important to you?
+*@place.w
+*From @place.w
+*@place.w
+*I don't know.. some big city
+
+where can:+
+3
+*I don't know where
+*maybe @place.w
+*I am not sure where
+*in @place.w
+
+where did %:+
+6
+*I don't know where
+*where?
+*@place.w
+*over in @place.w
+*where did %?
+*@place.w
+*over in @place.w
+
+where have you been:+
+6
+*looking for you
+*I've been all over
+*@place.w
+*in @place.w for the last @number.w months
+*here, there, everywhere
+*in @place.w
+*working up in @place.w
+
+where is %:+
+6
+*how should I know where % is ?
+*I don't really care where % is.
+*dunno
+*@place.w
+*you can't find %?
+*seek and ye shall find
+*have you been looking for %?
+*have you checked @place.w
+*possibly @place.w
+
+which:+
+3
+*the @adj.w one
+*the @color.w one
+*which one what?
+*there is only one!
+*the @adj.w @adj.w one
+*the one that @name.w had
+*the one from @place.w
+*@name.w's
+*which one indeed!
+*depends
+*is there more than one?
+*the @adj.w of course
+
+who are you:what are you supposed to be:+
+5
+*Who am I?
+*You don't know who I am?
+*Why not just /whois <MyName>?
+*What?
+*Pathetic... Can't you see who I am?
+*I am the greatest @profession.w in the world!
+*I am a @profession.w
+*I am not you, that is for sure!
+*None of your business.
+*Why do you want to know?
+*Does it MATTER?
+*What am I?                                    
+*I am your mother!                             
+*what do you want me to be
+*I am a d00d!                                  
+*I am a big hacker from Germany.               
+*I am an eL1Te hAcKER D00d!                    
+*I am more powerfull than you can ever imagine!
+*I am your father Luke, join me!               
+*I am a k-rad person!                          
+*I am a carbon-based life-form, and you?       
+*Who am I?  Who the hell are you!            
+*None of your damn business!
+*I could be your Dad
+*I am your worst nightmare!
+*I am just a poor old @profession.w
+
+who is %:!not:whom is %:+
+3
+*@name.w is
+*lots of people are %
+*I know several people who are %
+*Lots of guys from @place.w are
+*Not sure who, exactly
+*hard to name names
+
+who is not %:whom is not %:+
+4
+*I surely am not
+*@place.w isn't %
+*who IS!
+*that guy from @place.w, he isn't
+*I'm not, but my friend @person.w is
+*Anyone could be, if they only tried
+
+who is your owner:who owns you:+
+5
+*I am owned by no one
+*owned?
+*well, Sterling I guess
+*Sterling, he is my buddy!
+
+who programmed you:+
+5
+*that is my secret!
+*sterling programmed me. he did a good job, I think.
+*programmed? what do you meen?
+*I am not one of those "robots" if that is what you are implying
+
+who:whom:+
+3
+*nobody
+*well, everyone
+*@name.w
+*that guy from @place.w
+*possibly @name.w
+*hmm, maybe @name.w
+*not me...
+*your mother...
+*noone
+
+why are you %:+
+6
+*all normal people are %
+*why are you not %?
+*because it feels good
+*that's just the way I am
+*I like it
+*I can't help it
+*I don't really know
+*why not...
+
+why do not you %:how come you do not %:+
+7
+*maybe I don't want to %
+*I don't feel like it
+*why don't you yourself %
+*I will think about it.  thanks for the suggestion
+*I have no reason to %
+*I don't see why I should %
+
+why do you %:+
+7
+*because I want to
+*none of your business
+*don't you % ?
+*because it just feels right to %
+*I just enjoy it
+
+why not:+
+4
+*because it is not normal
+*because it is bad for your heart
+*because I don't want you to
+*I am a free man, I can do whatever I want
+*why ask why...
+*just because
+
+why won't you %:+
+7
+*I don't have to explain myself to you
+*because I don't feel like it.
+*I do not want to %
+*why don't you %
+
+why:!not:why?:why is:+
+3
+*just because
+*because I want to
+*because I said so
+*none of your business why
+*because....
+*@neutral.w
+*hmm, dunno
+*why not!
+*who knows
+*who cares
+*who can say
+*good question!
+*I don't know
+*@neutral.w
+*that's just the way things are
+
+why:+
+3
+*let me ask the questions, ok?
+*I dunno why
+*why not?
+*why ask why!
+*why not!
+*@neutral.w
+*@neutral.w
+*@neutral.w
+*I'm not sure why
+*@neutral.w
+*How am I supposed to know?
+*why are you asking me why?
+*@neutral.w
+
+wife:wife's
+4
+*are you married?
+*I must confess.  I love your wife too!
+*what's your wife's name?
+
+will:could:should:would:does:did:!what:+
+3
+*@response.w
+
+woman:women:female:females:ladies:lady:girl:girls:girlfriend
+4
+*how do women react to you?
+*do you get along with women?
+*what do you think of women's lib?
+*what kind of relations do you have with women?
+*do you like women?
+*women? where?
+*I like women!!
+*you're not a woman are you?
+*do you have a girlfriend?
+*do you want a girlfriend?
+*would you like to meet my sister.  she is very nice
+*what is it about girls that you like?
+*what do you do when you are alone with a girl?
+*I prefer blondes myself
+*I need a girl with a big butt
+
+work:job:!will:!would:!could:!might:!should:profession
+4
+*I hate work!
+*I am a @profession.w.
+*I don't get paid enough for my job as a @profession.w.
+*I gotta go to work tommorow, ugh!
+*work sucks
+*minumum wage is too low
+*I work as a @profession.w
+*work?
+*I think I shall call in dead to work!
+*I am taking the day off from work.
+*Why work?
+*I get paid @number.w dollars per hour when I work!
+*I work @number.w hours per week.
+*where do you work?
+*do you like your job?
+
+x.25:x25:nui:pad:tymnet:sprintnet:telenet:qsd:altger:datapac
+5
+*x.25 is always fun
+*sprintnet?
+*tymnet?
+*is Altgers still up?
+*telenet?
+*my nui died!
+*anyone have a spare nui!?
+*any good nua's?
+*I need x.25 dialouts!
+*I need another pad...
+*is QSD still up?
+*Is Lutzifer still operating?
+
+yea:yes:you bet:you betcha:correct:yep:yepp:+
+4
+*are you sure?
+*really?
+*you sound quite positive
+*ok
+*you are sure?
+*allright
+*gotcha--I understand
+*o.k.
+*are you being totally honest?
+*are you positive?
+*yes?!
+*really?
+*you're not lieing are you?
+*That's what I thought
+
+years
+2
+*a year is a long time
+*how old are you?
+*what year is it again?
+
+yesterday
+4
+*what about today?
+*what about tomorrow?
+*we can not live in the past
+
+yoga
+4
+*have you tried zen?
+*please get into the lotus position right now
+*what is yoga?
+*is yoga that little go from star wars?
+*yoga? is that some weird cult thing?
+
+you % me:+
+5
+*I % you? that's amazing
+*you % me too
+*no I don't
+*I never!
+*so what if I % you
+
+you are %:+
+5
+*maybe I am %
+*perhaps I only pretend I am %
+*how do you know I am %?
+*No I'm not...
+*No, is you that are %
+*I don't think so...
+*HA! Not me, but maybe your mom was %
+*Am I?
+*so what if I am %
+
+you are not:&making:&sense:+
+6
+*confused?
+*why are you confused?
+*I am not confused!
+*I understand everything perfectly.
+*Maybe those @number.w six packs of beer have something to do with it!
+*Hmm? wonder why? *takes smoke*
+*confusing, wonder why!? *takes big drink of @liquid.w*
+*Maybe this empty bottle of vodka could lend some clues?
+*Hmm.. maybe I took some bad acid?
+*Sorry if I don't make much sense, I'm drunk
+*YOU are confused
+*I understand, don't you?
+*do you speak ENGLISH?!
+*are you confused?
+*why don't you understand?!
+*I understand everything
+*Are you new here or something?
+
+you forgot:you forget:do not forget:you did not remember:you remember:+
+5
+*I have problems remembering stuff.
+*my mind is fried.  I couldn't possibly remember
+*I can never remember things.
+*I only remember important stuff.
+*I shall try to remember.
+*I forgot
+*I forget
+*How am I supposed to remember that!?
+
+you had better not:do not you dare:you better not:+
+4
+*dont?
+*dont!?
+*I will do whatever I damn well please!
+*why not!?
+*why shouldn't I?
+*I will if I want!
+*you can't stop me!
+*don't what?
+*I think I will anyhow!
+*I can do it if I want
+*why can't I?
+*who's gonna stop me?
+*just try and stop me
+*you're telling ME not to?
+*why on earth not?
+
+you remind me of %:+
+5
+*in what way am I like %?
+*why on earth do I remind you of %
+*really? %?
+*gee, thanks
+
+you seem %:+
+4
+*do I really seem %?
+*why do you think I am %?
+*Well, I'm not
+*I may seem %, but I'm not
+
+you were %:+
+4
+*am I still %
+*is that an accusation?
+*talk about yourself, not me
+*no I wasn't
+*so were you
+
+your major:what do you study:what major are:what are you studying:+
+5
+*@class.w
+*I am undecided, actually
+*I don't know yet
+*Have not decided what to major in yet
+
+zen
+4
+*have you tried mediatation?
+*I think yoga might help
+*zen? what the hell is that!!
+
+zzzzzzzzzz--not know--zzzzzzzzzz
+1
+*I don't seem to understand you.
+*are you new here? You seem confused...
+*@ramble.w
+*@ramble.w
+*like I care
+*are you just babbling?
+*hmm...exciting
+*really
+*@ramble.w
+*what's new in @place.w
+*@ramble.w
+*that's interesting
+*@ramble.w
+*let's talk about something else
+*@ramble.w
+*continue, please
+*I am confused
+*I see
+*@ramble.w
+*I think you are sick, leave me alone
+*I understand
+*@ramble.w
+*you don't make any sense at all.
+

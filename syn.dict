@@ -1,0 +1,61 @@
+# This is a synonym file and must be called syn.dict
+# The format is "NEW WORD or PHRASE:OLD WORD:OLD WORD: ..."
+# a ":" should seperate each word.
+# NOTE: you MUST end the line with a CR or a ":"
+# NOTE: you MUST NOT have any garbage line at the end
+# Lines starting with a "#", space, or CR are comments, and are thus ignored
+
+#contractions
+have not:haven't:havent
+had not:hadn't:hadnt
+can not:can't:cant:cannot
+will not:won't:wont
+I have:I've:Ive
+you have:you've:youve
+they have:they've:theyve
+we have:we've:weve
+I will:I'll
+he will:he'll
+she will:she'll
+it will:it'll
+they will:they'll:theyll
+we will:we'll
+who is:who's:whos
+he is:he's:hes
+she is:she's:shes
+they are:they're:theyre
+I am:I'm:Im
+I would:I'd
+do not:don't:dont
+have not:haven't:havent
+would not:whouldn't:wouldnt
+should not:shoudn't:shoudnt
+could not:couldn't:couldnt
+what is:what's:whats
+how is:hows:how's
+why is:why's:whys
+you had:you'd:youd
+she had:she'd
+he had:he'd:hed
+we had:we'd
+got to:gotta
+that is:that's:thats
+
+#ing chops
+going:goin
+doing:doin
+hanging:hangin
+living:livin
+
+#slang
+cool:kool
+you:ya:u
+are:r
+why:y
+
+#misspellings
+splotch:splatch:spletch:splot:splat:spl:spoltch:sploctch:spotch
+yea:yeh
+hugh:huh
+shut up:shut-up:shaddup
+the:teh
