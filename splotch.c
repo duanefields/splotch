@@ -1,8 +1,21 @@
-/*******************************************************
-   splotch.c a robot type thing Version 1.0 Beta
+/*****************************************************************************
+Splotch: an eliza type chatter bot
+Copyright (C) 1992-2000  Duane K. Fields (duane@deepmagic.com)
 
-   7/17/1992 Duane Fields (dkf8117@tamsun.tamu.edu)
-********************************************************/
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+*****************************************************************************/
 
 
 #include <stdio.h>
@@ -795,11 +808,13 @@ char *searchstring;
         return NULL;
 }
 
-
+/**
+ * Apparently this is in string.h now (dkf)
+ **/
 int strncasecmp (a, b, n)
 char *a;
 char *b;
-int   n;
+int  *n;
 {
 
         for (; (*a != '\0') && (*b != '\0') &&
@@ -808,7 +823,7 @@ int   n;
                 return 0;
         return (tolow (*a) - tolow (*b));
 }
-
+**/
 
 
 
