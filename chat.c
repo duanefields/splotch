@@ -1,6 +1,7 @@
 /*****************************************************************************
 Chat: a chat type interface for Splotch
 Copyright (C) 1992-2000  Duane K. Fields (duane@deepmagic.com)
+changes Copyright (C) 2001 Mark Rages (markrages@yahoo.com)
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,15 +22,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include "splotch.c"
+#include "splotch.h"
+#define NAME "Tester"
 
-main() 
+int main(void) 
 {
   char   question[400];
   char   tmp[400];
+  splotch_t *myself;
     
-  strcpy(my_nick, NAME);
-  init();
+  myself = splotch_init();
+  strcpy(myself->my_nick, NAME);
   fprintf(stdout, "Hello! Let's chat ('exit' to quit)\n\n");
   fflush(stdout);
   strcpy(question, "foo");
@@ -40,16 +43,19 @@ main()
 	{
 	  sprintf(tmp, "%s: %s",NAME, question);
 	  strcpy(question, tmp);
-	
+	  
 	  printf("\n");
 	  if (question[0] != '\0') {
-	    ask("Joe", question);
-	    fprintf(stdout, "%s\n", response);  
+	    splotch_ask(myself, "Joe", question);
+	    fprintf(stdout, "%s\n", myself->response);  
 	    fflush(stdout);
 	  }
 	}
     else fflush(stdout);
   }
+
+  free(myself);
+  return 0;
 }
 
 
