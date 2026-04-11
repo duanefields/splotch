@@ -7,6 +7,11 @@ import './App.css';
 
 const USER_NAME = 'user';
 
+let _msgId = 0;
+function newId(): string {
+  return `msg-${++_msgId}`;
+}
+
 export default function App() {
   const engineRef = useRef<SplotchEngine | null>(null);
   const [ready, setReady] = useState(false);
@@ -19,7 +24,7 @@ export default function App() {
 
     // Greet the user on load
     const greeting = engine.ask(USER_NAME, 'hello');
-    setMessages([{ id: crypto.randomUUID(), role: 'bot', text: greeting }]);
+    setMessages([{ id: newId(), role: 'bot', text: greeting }]);
     setReady(true);
   }, []);
 
@@ -27,9 +32,9 @@ export default function App() {
     const engine = engineRef.current;
     if (!engine) return;
 
-    const userMsg: Message = { id: crypto.randomUUID(), role: 'user', text };
+    const userMsg: Message = { id: newId(), role: 'user', text };
     const botResponse = engine.ask(USER_NAME, text);
-    const botMsg: Message = { id: crypto.randomUUID(), role: 'bot', text: botResponse };
+    const botMsg: Message = { id: newId(), role: 'bot', text: botResponse };
 
     setMessages(prev => [...prev, userMsg, botMsg]);
   }
