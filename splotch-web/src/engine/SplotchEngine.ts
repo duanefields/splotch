@@ -29,7 +29,7 @@ export class SplotchEngine {
    * Process a user message and return Splotch's response.
    * Mirrors the flow: _sp_expand → _sp_trytempl → _sp_usetempl.
    */
-  ask(userName: string, userText: string): string {
+  ask(_userName: string, userText: string): string {
     // Prepend "BotName: " as chat.c does — this makes the NAME (+) clause always pass
     const question = `${this.botName}: ${userText}`;
 
