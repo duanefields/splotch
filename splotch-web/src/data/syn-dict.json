@@ -1,0 +1,319 @@
+[
+  {
+    "canonical": "have not",
+    "variants": [
+      "haven't",
+      "havent"
+    ]
+  },
+  {
+    "canonical": "had not",
+    "variants": [
+      "hadn't",
+      "hadnt"
+    ]
+  },
+  {
+    "canonical": "can not",
+    "variants": [
+      "can't",
+      "cant",
+      "cannot"
+    ]
+  },
+  {
+    "canonical": "will not",
+    "variants": [
+      "won't",
+      "wont"
+    ]
+  },
+  {
+    "canonical": "I have",
+    "variants": [
+      "I've",
+      "Ive"
+    ]
+  },
+  {
+    "canonical": "you have",
+    "variants": [
+      "you've",
+      "youve"
+    ]
+  },
+  {
+    "canonical": "they have",
+    "variants": [
+      "they've",
+      "theyve"
+    ]
+  },
+  {
+    "canonical": "we have",
+    "variants": [
+      "we've",
+      "weve"
+    ]
+  },
+  {
+    "canonical": "I will",
+    "variants": [
+      "I'll"
+    ]
+  },
+  {
+    "canonical": "he will",
+    "variants": [
+      "he'll"
+    ]
+  },
+  {
+    "canonical": "she will",
+    "variants": [
+      "she'll"
+    ]
+  },
+  {
+    "canonical": "it will",
+    "variants": [
+      "it'll"
+    ]
+  },
+  {
+    "canonical": "they will",
+    "variants": [
+      "they'll",
+      "theyll"
+    ]
+  },
+  {
+    "canonical": "we will",
+    "variants": [
+      "we'll"
+    ]
+  },
+  {
+    "canonical": "who is",
+    "variants": [
+      "who's",
+      "whos"
+    ]
+  },
+  {
+    "canonical": "he is",
+    "variants": [
+      "he's",
+      "hes"
+    ]
+  },
+  {
+    "canonical": "she is",
+    "variants": [
+      "she's",
+      "shes"
+    ]
+  },
+  {
+    "canonical": "they are",
+    "variants": [
+      "they're",
+      "theyre"
+    ]
+  },
+  {
+    "canonical": "I am",
+    "variants": [
+      "I'm",
+      "Im"
+    ]
+  },
+  {
+    "canonical": "I would",
+    "variants": [
+      "I'd"
+    ]
+  },
+  {
+    "canonical": "do not",
+    "variants": [
+      "don't",
+      "dont"
+    ]
+  },
+  {
+    "canonical": "have not",
+    "variants": [
+      "haven't",
+      "havent"
+    ]
+  },
+  {
+    "canonical": "would not",
+    "variants": [
+      "whouldn't",
+      "wouldnt"
+    ]
+  },
+  {
+    "canonical": "should not",
+    "variants": [
+      "shoudn't",
+      "shoudnt"
+    ]
+  },
+  {
+    "canonical": "could not",
+    "variants": [
+      "couldn't",
+      "couldnt"
+    ]
+  },
+  {
+    "canonical": "what is",
+    "variants": [
+      "what's",
+      "whats"
+    ]
+  },
+  {
+    "canonical": "how is",
+    "variants": [
+      "hows",
+      "how's"
+    ]
+  },
+  {
+    "canonical": "why is",
+    "variants": [
+      "why's",
+      "whys"
+    ]
+  },
+  {
+    "canonical": "you had",
+    "variants": [
+      "you'd",
+      "youd"
+    ]
+  },
+  {
+    "canonical": "she had",
+    "variants": [
+      "she'd"
+    ]
+  },
+  {
+    "canonical": "he had",
+    "variants": [
+      "he'd",
+      "hed"
+    ]
+  },
+  {
+    "canonical": "we had",
+    "variants": [
+      "we'd"
+    ]
+  },
+  {
+    "canonical": "got to",
+    "variants": [
+      "gotta"
+    ]
+  },
+  {
+    "canonical": "that is",
+    "variants": [
+      "that's",
+      "thats"
+    ]
+  },
+  {
+    "canonical": "going",
+    "variants": [
+      "goin"
+    ]
+  },
+  {
+    "canonical": "doing",
+    "variants": [
+      "doin"
+    ]
+  },
+  {
+    "canonical": "hanging",
+    "variants": [
+      "hangin"
+    ]
+  },
+  {
+    "canonical": "living",
+    "variants": [
+      "livin"
+    ]
+  },
+  {
+    "canonical": "cool",
+    "variants": [
+      "kool"
+    ]
+  },
+  {
+    "canonical": "you",
+    "variants": [
+      "ya",
+      "u"
+    ]
+  },
+  {
+    "canonical": "are",
+    "variants": [
+      "r"
+    ]
+  },
+  {
+    "canonical": "why",
+    "variants": [
+      "y"
+    ]
+  },
+  {
+    "canonical": "splotch",
+    "variants": [
+      "splatch",
+      "spletch",
+      "splot",
+      "splat",
+      "spl",
+      "spoltch",
+      "sploctch",
+      "spotch"
+    ]
+  },
+  {
+    "canonical": "yea",
+    "variants": [
+      "yeh"
+    ]
+  },
+  {
+    "canonical": "hugh",
+    "variants": [
+      "huh"
+    ]
+  },
+  {
+    "canonical": "shut up",
+    "variants": [
+      "shut-up",
+      "shaddup"
+    ]
+  },
+  {
+    "canonical": "the",
+    "variants": [
+      "teh"
+    ]
+  }
+]
