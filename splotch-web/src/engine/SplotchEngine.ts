@@ -30,8 +30,8 @@ export class SplotchEngine {
    * Mirrors the flow: _sp_expand → _sp_trytempl → _sp_usetempl.
    */
   ask(userName: string, userText: string): string {
-    // Prepend "Name: " as the original chat.c does (influences NAME clause matching)
-    const question = `${userName.toLowerCase()}: ${userText}`;
+    // Prepend "BotName: " as chat.c does — this makes the NAME (+) clause always pass
+    const question = `${this.botName}: ${userText}`;
 
     // Expand synonyms and lowercase
     const expanded = expandSynonyms(question, this.data.synonyms);
