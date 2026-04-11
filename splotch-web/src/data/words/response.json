@@ -1,0 +1,10 @@
+{
+  "name": "response",
+  "words": [
+    "@affirmative.w",
+    "@negative.w",
+    "@affirmative.w",
+    "@negative.w",
+    "@neutral.w"
+  ]
+}
